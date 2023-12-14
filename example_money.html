@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자판기 연습문제</title>
+  <style>
+    #tile{width: 200px; margin: 0 auto;text-align: center;}
+    .be{margin: 5px auto;width: 200px; text-align: center;}
+    .btn{width: 200px; margin: 0 auto;height: 50px;border-radius: 5px;}
+</style>
+</head>
+<body>
+  <h2 id="tile">음료수 자판기</h2>
+<hr>
+<div class="be">
+    <div class="A">A음료수 : 500원</div>
+    <div class="B">B음료수 : 700원</div>
+    <div class="C">C음료수 : 1000원</div>
+</div>
+<div class="btn">
+    <lable id="coin">돈 넣기</lable>
+    <button id="btn1">100</button>
+    <button id="btn2">500</button>
+    <button id="btn3">1000</button>
+</div>
+<script>
+  let btn = document.querySelectorAll('.btn button');
+        for(let i of btn){
+          console.log(i.innerText);
+            let money = i.innerText;
+            i.addEventListener('click',() => {
+                if( parseInt(money) >= 1000){
+                    alert('모든음료수 선택 가능');
+                }else if(parseInt(money) >= 500){
+                    alert('A음료수만 선택 가능');
+                }else{
+                    alert('선택 가능한 음료수가 없습니다.');
+                }
+            })
+        }
+</script>
+</body>
+</html>

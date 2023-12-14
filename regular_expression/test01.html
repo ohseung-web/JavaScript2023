@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>정규표현식 연습</title>
+  </head>
+  <body>
+    <script>
+      //리터럴 방식
+      var regex = /abc/;
+
+      // 생성자 방식
+      var regex = new RegExp('abc');
+      var regex = new RegExp(/abc/); //이렇게도 가능함
+
+
+      // 회원가입 할때 휴대폰번호 양식 검사
+      // 예를 들어 010-1111-2222 라는 전호번호는
+      // "숫자3개", "-", "숫자4개", "-", "숫자4개" 로 이루어져 있는데,
+
+      const regex1 = /\d{3}-\d{4}-\d{4}/;
+      // (\d는 숫자를 의미하고, {} 안의 숫자는 갯수를 의미한다.)
+
+      document.write(regex1.test('010-1111-2222') + '<br>');
+      document.write(regex1.test('01-11-22'));
+
+      regex1.test('010-1111-2222'); // true;
+      regex1.test('01-11-22'); // false;
+    </script>
+  </body>
+</html>

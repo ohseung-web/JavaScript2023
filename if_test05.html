@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>if 화면접기</title>
+</head>
+<body>
+     <button type="button" >내용보기</button>
+    <div id="mydiy">
+        <h1>내용을 접거나 펴는 방법</h1>
+        <p>
+            disyplay : block 속성값은 내부요소를 나타나게 하며 none은 사라지게 한다.
+        </p>
+    </div>
+    <script>
+        let btn = document.querySelector('button');
+        let mydiy = document.querySelector('#mydiy');
+        btn.addEventListener('click',() => {
+            if(mydiy.style.display=='none'){
+                mydiy.style.display = 'block';
+            }else{
+                mydiy.style.display = 'none';
+            }
+        })
+    </script>
+</body>
+</html>

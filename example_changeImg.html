@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dom-imgChange</title>
+  <style>
+    *{box-sizing: border-box;}
+    body{
+      display: flex;
+      justify-content: center;
+    }
+    .btn{
+      display: flex;
+      justify-content: center;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="galleryZone">
+    <div><img src="images/pic_1.jpg" id='photo' alt=""></div>
+    <div class="btn">
+      <button type="button">이전</button>
+      <button type="button">다음</button>
+    </div>
+  </div>
+  <script> 
+     let num = 1;
+     let ImgPhoto = document.getElementById('photo');
+     let btnTag = document.getElementsByTagName('button');
+
+     for(let i=0; i<btnTag.length; i++){
+         btnTag[i].addEventListener('click',() => {
+            if(i){
+              if(num === 8) return;
+              num++;
+            }else{
+              if(num === 1) return;
+              num--; 
+            }
+             ImgPhoto.setAttribute('src','images/pic_'+ num + '.jpg');
+             console.log(num);
+         })
+     }
+  </script>
+</body>
+</html>

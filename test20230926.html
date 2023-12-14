@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>수업내용 연습</title>
+</head>
+<body>
+  <h1>Book 객체</h1>
+  <hr>
+  <div class="bookprint">
+  </div>
+  <!-- <div class="box">
+    <style>#source{color:blue}</style>
+    <p>Hi!!</p>
+    <span style="display: none;">hidden mag</span>
+  </div> -->
+  <script>
+    //  let a = 60;
+    //  let b = 60;
+    //  a = 100;
+    //  console.log(a)
+    //  console.log(b)
+     
+    //  let object1={
+    //   name:'tom',age:25
+    //  };
+    //  let object2= object1;
+    //  object1.age=30;
+    //  console.log(object2);
+    //  console.log(object1);
+    
+    //  let book={title:'javaScript',author:'홍길동',page:500,price:500, info:function(){
+    //       alert(`${this.title}책의 분량은 ${this.page}쪽입니다.`);
+    //  }};
+    //  book.info();
+    //  let bookView = document.querySelector('.bookprint');
+    //  let box= document.querySelector('.box');
+    //  console.log(box.textContent);
+    //  console.log(box.innerText);
+    //  console.log(box.innerHTML);
+    //  bookView.textContent=`${book.title}의 저자는 ${book.author}이고 총페이지 수는${book.page}페이지 이다.`;
+     
+    const today1 = new Date();
+    const today2 = new Date(86400000);
+    const today3 = new Date('2023/09/26/09:40:00');
+    const today4 = new Date(2023,8);
+    const today5 = new Date(2023,8,9);
+    const today6 = Date();
+    const now = Date.now();
+    const d = Date.parse('2023/9/1/09:00:00');
+    console.log(typeof today1, today1);
+    console.log(typeof today2, today2);
+    console.log(typeof today3, today3);
+    console.log(typeof today4, today4);
+    console.log(typeof today5, today5);
+    console.log(typeof today6, today6);
+    console.log('now: '+Math.floor(now/86400000/365));
+    console.log('d: '+d/86400000/365);
+
+    let year = today1.getFullYear();
+    let month = today1.getMonth()+1;
+    let day = today1.getDate();
+    today1.setFullYear(2000);
+    today1.setMonth(5);
+    today1.setDate(20);
+
+    let yearSet = today1.getFullYear();
+    let monthSet = today1.getMonth()+1;
+    let daySet = today1.getDate();
+    console.log(year);
+    console.log(month);
+    console.log(day);
+
+    console.log(yearSet);
+    console.log(monthSet);
+    console.log(daySet);
+
+    //요일 0:일 ~ 6:토요일
+    let dday= today1.getDay();
+    console.log(dday);
+    let hours = today1.getHours();
+    let minute = today1.getMinutes();
+    let second = today1.getSeconds();
+    console.log('---------------');
+    console.log(hours);
+    console.log(minute);
+    console.log(second);
+    // today1.setHours(0,0,0,0);
+    // let hoursSet = today1.getHours();
+    // console.log(hoursSet);
+    let ms = today1.getMilliseconds();
+    console.log(ms);
+    let time = today1.getTime();
+    console.log(time);
+    console.log(today1);
+  </script>
+</body>
+</html>

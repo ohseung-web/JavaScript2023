@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>정규표현식 연습</title>
+  </head>
+  <body>
+    <script>
+      // 줄바꿈이 포함된 3줄 문자열
+      const test = "Hello World and\nPower Hello?\nPower Overwhelming!!";
+      // Hello 단어로 시작하는지 검사 (^ 문자는 문장 시작점을 의미)
+      let t= test.match(/^Hello/); // ["Hello"]
+      // → 첫번째 줄은 잘 찾음
+      document.write(t+'<br>');
+
+      // Power 단어로 시작하는지 검사 (^ 문자는 문장 시작점을 의미)
+      let t2 =test.match(/^Power/); // null
+      // → 그러나 그 다음 줄은 검색되지 아니함
+      document.write(t2+'<br>');
+
+      // 따라서 m 플래그를 통해 개행되는 다음 줄도 검색되게 설정
+      let t3 = test.match(/^Power/m); // ['Power']
+      document.write(t3+'<br>');
+      // 세번째 줄도 검색되게 하고싶으면 g 플래그와 혼합 사용
+      let t4= test.match(/^Power/gm); // ['Power', 'Power']
+      document.write(t4+'<br>');
+
+
+      // // `a`가 두 개 포함된 문자열
+      // const str = 'abcabc';
+
+      // // `g` 플래그 없이는 최초에 발견된 문자만 반환
+      // let str01 = str.match(/a/); // ["a", index: 0, input: "abcabc", groups: undefined]
+      // document.write(str01 + '<br>');
+      // // `g` 플래그가 있으면 모든 결과가 배열로 반환
+      // let str02 = str.match(/a/g); // (2) ["a", "a"]
+      // document.write(str02 + '<br>');
+
+      // // flags 에 플래그 문자열이 들어간다.
+      // var flags = 'i';
+      // const regex = new RegExp('abapplec', flags);
+
+      // // 리터럴로 슬래쉬 문자뒤에 바로 표현이 가능
+      // const regex1 = /apple/i;
+      // const regex2 = /apple/gm;
+    </script>
+  </body>
+</html>

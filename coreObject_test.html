@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>코어객체 간단예제</title>
+  </head>
+  <body>
+    <h1>Book 객체</h1>
+    <hr />
+    <div id="bookprint"></div>
+
+    <!-- <div id="box">
+      <style>
+        #source {
+          color: blue;
+        }
+      </style>
+      <p>Hi there!</p>
+      <span style="display: none">hidden message</span>
+    </div> -->
+    <script>
+      // let box = document.querySelector('#box');
+      // console.log('textContent : ' + box.textContent);
+      // console.log('innerText : ' + box.innerText);
+      let book = {
+        title: 'JavaScript',
+        author: '홍길동',
+        page: 500,
+        price: 15000,
+        info : function(){
+           alert(`${this.title}책의 분량은 ${this.page}쪽 입니다.`)
+        }
+      };
+      book.info();
+      let bookView = document.querySelector('#bookprint');
+      bookView.textContent = `${book.title}의 저자는 ${book.author}이고, 책의 총페이지 수는 ${book.page}page 이고, 금액은 ${book.price}이다.`;
+      console.log(bookView.textContent);
+    </script>
+  </body>
+</html>

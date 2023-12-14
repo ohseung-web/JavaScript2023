@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dom background img change</title>
+  </head>
+  <body>
+    <script>
+      const images = ['pic-1.jpg', 'pic-2.jpg', 'pic-3.jpg', 'pic-4.jpg'];
+      const chosenImage = images[Math.floor(Math.random() * images.length)];
+      const bgImage = document.createElement('img'); // <img>태그를 생성한다.
+      console.log(chosenImage);
+      console.log(Math.floor(Math.random() * images.length)); // index 번호가 출력된다.  고로 images[0]~images[3]
+
+      bgImage.src = `images/${chosenImage}`;
+      document.body.appendChild(bgImage); // <body>태그의 자식 태그로 추가한다.
+    </script>
+  </body>
+</html>

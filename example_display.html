@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>if문 이용 sale</title>
+    <style>
+      body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container{
+        width: 450px;
+        height: 600px;
+      }
+      .container .img{
+         width: 400px;
+         height: 300px;
+         text-align: center;
+         position: relative;
+      }
+      .container .btn1{
+        position: absolute;
+        width: 150px;
+        height: 20px;
+        left: -10px;
+        bottom: 10px;
+        opacity: 0.8;
+        border: 0;
+      }
+      .container button{
+        cursor: pointer;
+      }
+      .container .detail {
+        display: none;
+        width: 400px;
+        height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+      <div class="container">
+        <div class="img">
+          <img src="images/flower1.jpg" alt="">
+          <div class="btn1">
+            <button type="button" id="openBtn">상세 설명 보기</button>
+          </div> 
+        </div>
+        <div class="detail">
+          <h4>민들레</h4>
+          <p>
+            어디서나 매우 흔하게 보이는 잡초로서 바닥에 딱 붙어서 꽃봉오리 하나가 쑥 올라온다. 톱니 모양의 잎새와 눈에 확 띄는 노란 꽃이 인상적이다. 특히 꽃이 지고나면 솜털모양의 깃을 가진 씨앗들이 나오는에 바람을 타고 날아가서 널리 퍼진다.
+          </p>
+          <div class="btn2">
+            <button type="button" id="closeBtn">상세 설명 닫기</button>
+          </div>
+        </div>
+      </div>
+      
+    <script>
+        let opnbtn = document.querySelector('#openBtn');
+        let clsbtn = document.querySelector('#closeBtn');
+        let detaildisplay = document.querySelector('.detail');
+        opnbtn.addEventListener('click',() => {
+           detaildisplay.style.display='block';
+        })
+        clsbtn.addEventListener('click',() => {
+           detaildisplay.style.display ='none';
+        })
+    </script>
+  </body>
+</html>

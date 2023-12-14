@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>슬라이드 이미지</title>
+    <link rel="stylesheet" href="slider02 copy.css" />
+  </head>
+  <body>
+    <div class="layer_modal">
+      <div class="bg_slider">
+        <img src="images/btn-header-layer-close.png" id="close" alt="종료" />
+        <div class="tab_inner">
+          <img src="" alt="" />
+        </div>
+        <div class="chk">
+          <input type="checkbox" id="chkbox" /><label for="chkbox"
+            >하루동안 보이지 않기</label
+          >
+        </div>
+        <div class="slider">
+          <div class="inner_slider">
+            <a href="#"><img src="images/pic_1.jpg" id="photo" alt="" /></a>
+          </div>
+        </div>
+        <div class="btn">
+          <label for="tab1"></label>
+          <label for="tab2"></label>
+          <label for="tab3"></label>
+          <label for="tab4"></label>
+          <label for="tab5"></label>
+        </div>
+      </div>
+    </div>
+    <script>
+      let btn = document.querySelectorAll('.layer_modal .bg_slider .btn label');
+      let stopBtn = document.querySelector('.layer_modal .bg_slider .tab_inner img');
+      console.log(stopBtn)
+      let ImgPhoto = document.getElementById('photo');
+      let closeBtn = document.getElementById('close');
+      let bgSlider = document.querySelector('.bg_slider');
+      let num = 0;
+      let myTimer;
+      let k = 0;
+
+      for (let i = 0; i < btn.length; i++) {
+        btn[i].addEventListener('click', () => {
+          for (let j = 0; j < btn.length; j++) {
+            btn[j].classList.remove('change');
+          }
+            btn[i].classList.add('change');
+
+          if (i === 0 || i === 1 || i === 2 || i === 3 || i === 4) {
+              num = i + 1;
+          }
+          ImgPhoto.setAttribute('src', 'images/pic_' + num + '.jpg');
+        });
+      }
+
+      // 3초마다 자동으로 이미지 변경 코드
+      imagChange();
+      
+      // setInterval(function () {
+      //   if (k === 5) {
+      //     k = 0;
+      //   } else {
+      //     btn[k].click();
+      //     k++;
+      //   }
+      // }, 3000);
+
+      function imagChange(){
+        if (k === 5) {
+          k = 0;
+        } else {
+          btn[k].click();
+          k++;
+        }
+        myTimer = setTimeout(imagChange,3000);
+      }
+
+      //  stop 버튼클릭시 이미지 변경 멈춤
+      stopBtn.addEventListener('click',() =>{
+        if(document.querySelector('.btnChange')){
+          stopBtn.classList.remove('btnChange');
+          imagChange();
+        }else{
+          stopBtn.classList.add('btnChange');
+          clearTimeout(myTimer);
+        }
+      })
+
+      // 종료
+      closeBtn.addEventListener('click', () => {
+        bgSlider.classList.add('off');
+      });
+    </script>
+  </body>
+</html>

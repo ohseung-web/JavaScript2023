@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>while, for 반복문 연습</title>
+  </head>
+  <body>
+    <script>
+      // let num = 0;
+      //   while(num <3){
+      //       console.log(num);  // 0~2 까지 출력
+      //       num++;
+      //   }
+
+      //       do{
+      //          console.log('일단 한번은 실행된다.'); // 이 코드만 한번 실행되고 반복 종료.
+      //        }while(false);
+
+      //        for (let i = 0; i < 10; i++){
+      //           console.log(i); // 0~9까지 출력
+      //         }
+      //         // 단 for안의 변수선언시 const로 선언 불가
+
+      const obj = {
+        name: 'curryyou',
+        job: 'engineer',
+      };
+
+      for (const key in obj) {
+        console.log(`${key} : ${obj[key]}`);
+      }
+      // name : curryyou
+      // job : engineer
+
+      var str_01 = `
+                  Hi!
+                      It's me!
+                       JavaScript!
+                  So Cool!`;
+      console.log(str_01);
+
+      var name = `사과`;
+      var price = 100;
+      var num = 5;
+
+      console.log(`${name}의 구매가는 ${price * num}원 입니다.`);
+
+      console.log(`${5 + 10} 입니다`); // 15 입니다
+
+      const arr = [10, 20, 30];
+      for (const item of arr) {
+        console.log(item); // 10, 20, 30 출력
+      }
+
+      const arr02 = [10, 20, 30];
+      arr02.forEach((value, index, array) => {
+        console.log(`${index} : ${value}`); // 0 : 10, 1 : 20, 2: 30 출력
+        console.log(`${array}`);
+      });
+
+      var map_reuslt = [1, 2, 3, 4].map((value, index, array) => {
+        console.log(value); // 1, 2, 3, 4 출력
+        return value * 10; // 각 요소에 10을 곱한 값을 배열로 반환
+      });
+
+      console.log(map_reuslt); // [ 10, 20, 30, 40 ]
+
+      for (let i = 0; i < 10; i++) {
+        if (i === 5) {
+          break;
+        }
+        console.log(i);
+      }
+    </script>
+  </body>
+</html>

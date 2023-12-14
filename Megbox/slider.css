@@ -1,0 +1,61 @@
+body{
+  line-height: 1.5em;
+  margin: 0;
+  font-weight: 300;
+  color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.tab-inner{
+  border: 1px solid red;
+  width: 170px;
+  height: 340px;
+}
+input[name=tabmenu]{
+  display: none;
+}
+.slide{
+  width: 170px;
+  height: 340px;
+  position: relative;
+  /* 자식요소에 position:absolute가 되면 부모요소가 높이 값을
+     잃어버리기때문에 반드시 height를 지정해 준다. */
+  overflow: hidden;
+}
+.slide-inner{
+  position: absolute;
+  width: 510px;
+  /* 이미지에 생기는 마진때문에 이미지가 가로로 배치가 안되기때문에 font-size:0을 지정한다. */
+  font-size: 0;
+  top: 0;
+  left: 0;
+  transition: 0.5s;
+}
+.btn{
+  text-align: center;
+  margin-top:10px;
+}
+.btn label{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: lightgray;
+  border-radius: 50%;
+  cursor: pointer;
+}
+input[id=tab1]:checked ~ .slide .slide-inner{
+  left: 0;
+}
+input[id=tab2]:checked ~ .slide .slide-inner{
+  left: -170px;
+}
+input[id=tab3]:checked ~ .slide .slide-inner{
+  left: -340px;
+}
+input[id=tab1]:checked ~ .btn label[for=tabl],
+input[id=tab2]:checked ~ .btn label[for=tab2],
+input[id=tab3]:checked ~ .btn label[for=tab3]{
+  background-color: crimson;
+}

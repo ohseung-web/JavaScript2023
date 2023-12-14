@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Function 연습</title>
+</head>
+<body>
+   <script>
+      function sayHello() {return "Hello,";}
+      function greeting(helloMessage, name){
+        console.log(helloMessage()+name);
+      } // 'sayHello'를 greeting함수에 인자로 전달 함 => 일급함수
+      greeting(sayHello,'javaScript');
+
+    hap();
+    function hap(){ //선언적 함수
+      console.log("hap");
+    }
+    
+    const minus = function (a=1,b=2){  //익명함수
+      const num1 = 2;
+      const num2 = 1;
+      document.write(num1+num2);
+      document.write("<br />");
+      document.write(a+b);
+    };
+    minus(5,7);
+
+    // 간단한 함수 예제
+    let nums=[1,2,3,4,5,6,7,8,9,10];
+    
+    // 배열의 filter 함수 : callback 함수를 실행하고 
+    // 결과가 true인 요소들만으로 이루어진 새로운 배열을 반환
+    
+    const isOdd = (currentNum) => { return currentNum % 2 == 0};
+    console.log(nums.filter(isOdd));
+
+    // 홀수만 추출
+    nums = nums.filter( number => number % 2 == 1);
+    console.log(nums);
+
+    // 5이하의 값만 추출
+    nums = nums.filter( value => value <= 5 );
+    console.log(nums);
+
+    // 3의 배수만 추출
+    nums = nums.filter((value)=>( value % 3 === 0));
+    console.log(nums);
+
+    // 연습문제 1
+     const friends = [ 
+       { name: '양주진', age: 32, job: '코인러', married: false, }, 
+       { name: '오영제', age: 32, job: '랩퍼', married: false, }, 
+       { name: '서준형', age: 32, job: '2년차 유부남', married: true, } 
+     ];
+
+     const happyfriend = (friend) => {return friend.married === false};
+     console.log(friends.filter(happyfriend));
+
+    //  const happyfriend = friends.filter((friend) => friend.married === false) ;
+    //  console.log(happyfriend); 
+
+   </script>
+</body>
+</html>

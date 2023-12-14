@@ -1,0 +1,110 @@
+*{box-sizing: border-box;}
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container{
+  width: 1220px;
+  height: 170px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+}
+.container .content1{
+  width: 170px;
+  height: 170px;
+}
+.container::before{
+  content: '';
+  width: 170px;
+  height: 170px;
+  background-image: url('images/btn-specialtheater-prev.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.container .content1 .bg-dolby{
+  display: block;
+  width: inherit;
+  height: inherit;
+  background-image: url('images/bg-main-megainfo-dolby.png');
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  border-radius: 10px;
+  /* visibility: hidden; */
+}
+.container .content1 .bg-private{
+  display: block;
+  width: inherit;
+  height: inherit;
+  background-image: url('images/bg-main-megainfo-private.png');
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  border-radius: 10px;
+}
+.container .content1 .bg-boutique{
+  display: block;
+  width: inherit;
+  height: inherit;
+  background-image: url('images/bg-main-megainfo-boutique.png');
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  border-radius: 10px;
+}
+.container .content1 .bg-mx{
+  display: block;
+  width: inherit;
+  height: inherit;
+  background-image: url('images/bg-main-megainfo-mx.png');
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  border-radius: 10px;
+}
+.container .content1 .bg-comfort{
+  display: block;
+  width: inherit;
+  height: inherit;
+  background-image: url('images/bg-main-megainfo-comfort.png');
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  border-radius: 10px;
+}
+.container .content1 .bg-puppynew{
+  display: block;
+  width: inherit;
+  height: inherit;
+  background-image: url('images/bg-main-megainfo-puppy.jpg');
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  border-radius: 10px;
+}
+.container .content1 .bg-kids{
+  display: block;
+  width: inherit;
+  height: inherit;
+  background-image: url('images/bg-main-megainfo-kids.png');
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  border-radius: 10px;
+  /* visibility: hidden; */
+}
+.container::after{
+  content: '';
+  width: 170px;
+  height: 170px;
+  background-image: url('images/btn-specialtheater-next.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}

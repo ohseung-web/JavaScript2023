@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>if - function 구문 연습</title>
+  </head>
+  <body>
+    <a href="http://www.naver.com" id="id_test">바뀌기 전입니다.</a>
+    <input type="button" value="클릭하면 바뀝니다." onclick="change();">
+
+
+    <script>
+      function change(){
+       id_test01 = document.getElementById("id_test");
+       id_test01.innerHTML="바뀌었습니다.";
+       id_test01.href ="http://www.daum.net";
+       id_test01.target ="_blank";
+   }
+
+    </script>
+  </body>
+</html>

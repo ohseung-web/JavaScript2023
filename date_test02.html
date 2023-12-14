@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Date 객체</title>
+  </head>
+  <body>
+    <h3>Date 객체로 현재 시간 알아내기</h3>
+    <hr />
+    <script>
+      var now = new Date(); // 현재 시간 값을 가진 Date 객체 생성
+      var weekString = ['일', '월', '화', '수', '목', '금', '토'];
+
+      // new Date(년,월,일) 중 일을 0 으로 입력하면 마지막일자 출력, 1을 입력하면 처음일자를 출력한다.
+      var startdate = new Date(now.getFullYear(), now.getMonth(), 1);
+
+      // 이달의 마지막일자 구하기
+      var endDate = new Date(now.getFullYear(), now.getMonth()+1,0);
+
+      // 이틀전의 날짜 출력
+      var previousDate = new Date(now.getFullYear(), now.getMonth(), -1);
+      var previousString = previousDate.toLocaleDateString();
+      var enddate = endDate.toLocaleDateString();
+      var endDay = endDate.getDate();
+      var startdateweek = startdate.getDay();
+      // 월 0->1월, 1->2월..... 11->12월 임에 주의하자
+      document.write(now.getFullYear() + '년도<br>');
+      document.write(now.getMonth() + 1 + '월<br>');
+      document.write(now.getDate() + '일<br>');
+      var week = now.getDay();
+      for (let i = 0; i < weekString.length; i++) {
+        if (week === i) {
+          document.write(weekString[i] + '요일<br>');
+        }
+      }
+      document.write(now.getHours() + '시<br>');
+      document.write(now.getMinutes() + '분<br>');
+      document.write(now.getSeconds() + '초<br>');
+      // getMilliseconds() : 주어진 날짜의 현지 시간 기준 밀리초를 나타내는 0에서 999 사이의 정수
+      document.write(now.getMilliseconds() + '밀리초<br><hr>');
+      document.write(`toLocalDateString : ${now.toLocaleDateString()} <br>`);
+      document.write(
+        `toLocalTimeString : ${now.toLocaleTimeString()} <br><hr>`
+      );
+      document.write(`시작일자 : ${startdate} <br>`);
+      document.write(`시작일의 요일 : ${startdateweek} <br>`);
+      document.write(` 마지막일자 : ${enddate} <br>`);
+      document.write(` 마지막일 : ${endDay} <br>`);
+      document.write(` 이틀전 일자 : ${previousString} <br>`);
+
+      // switch (week) {
+      //   case 0: weekString = '일'; break;
+      //   case 1: weekString = '월'; break;
+      //   case 2: weekString = '화'; break;
+      //   case 3: weekString = '수'; break;
+      //   case 4: weekString = '목'; break;
+      //   case 5: weekString = '금'; break;
+      //   case 6: weekString = '토'; break;
+      // }
+    </script>
+  </body>
+</html>

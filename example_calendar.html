@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar 만들기</title>
+    <script
+      src="https://kit.fontawesome.com/2cd23a15d7.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        width: 500px;
+        height: 400px;
+        /* border: 1px solid blue; */
+        border-radius: 10px;
+        background-color: rgb(220, 226, 240);
+      }
+      .date-wrap {
+        width: inherit;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        gap: 15%;
+        margin: 20px 0;
+        /* border: 1px solid red; */
+      }
+      .date-week th {
+        width: 70px;
+        color: rgb(80, 95, 109);
+        font-size: 20px;
+        /* border: 1px solid red; */
+      }
+      .date-week th:nth-child(1) {
+        color: crimson;
+      }
+      .cal_table td {
+        width: 70px;
+        height: 50px;
+        font-size: 20px;
+        text-align: center;
+        font-weight: bold;
+      }
+      .cal_table td:nth-child(1) {
+        color: crimson;
+      }
+      .previousButton,
+      .nextButton {
+        border: none;
+        /* 배경색 투명 */
+        background-color: transparent;
+        cursor: pointer;
+        font-size: 20px;
+      }
+      .main_date {
+        font-size: 25px;
+        color: rgb(63, 115, 175);
+        font-weight: bold;
+      }
+      .cal_table {
+        /* border-color: blue; */
+        border-collapse: collapse;
+        color: rgb(80, 95, 109);
+      }
+      /* 오늘 날짜 css  시작 */
+      .today {
+        background-color: #112d4e;
+        color: white;
+        border-radius: 10px;
+      }
+      /* .today::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+        width: 52px;
+        height: 52px;
+        display: block;
+        background-color: #112d4e;
+        border-radius: 50%;
+      } */
+    </style>
+  </head>
+  <body>
+    <!-- <button onclick="display();">클릭</button> -->
+    <div class="container">
+      <div class="date-wrap">
+        <button class="previousButton">
+          <i class="fa-solid fa-less-than"></i>
+        </button>
+        <div class="main_date"></div>
+        <button class="nextButton">
+          <i class="fa-solid fa-greater-than"></i>
+        </button>
+      </div>
+      <table class="date-week">
+        <thead>
+          <th>SUN</th>
+          <th>MON</th>
+          <th>TUE</th>
+          <th>WED</th>
+          <th>THU</th>
+          <th>FRI</th>
+          <th>SAT</th>
+        </thead>
+      </table>
+      <div class="displayTable"></div>
+    </div>
+
+    <script>
+      let yearMonth = document.querySelector('.main_date');
+      let previousButton = document.querySelector('.previousButton');
+      let nextButton = document.querySelector('.nextButton');
+      let displayTable = document.querySelector('.displayTable');
+      let today = new Date(); //오늘날짜
+
+      // ES6를 지원하는 브라우저에서만 사용 가능
+      // arr[5][2] (빈 배열 생성)
+      //const arr1 = Array.from(Array(6), () => new Array(7));
+
+      // 가로 X 세로 : 6*7 => 42 2차원배열 칸을 생성한다.
+      // 달력의 일자를 담을 방으로 배열을 생성한다.
+      let arr = new Array(6);
+      for (let i = 0; i < arr.length; i++) {
+        arr[i] = new Array(7);
+      }
+
+      //달력의 배열에 일자 값을 저장하는 함수
+      let calendar = function () {
+        let year = today.getFullYear(); //올해년도
+        let month = today.getMonth(); //오늘날짜의 월
+
+        // 이달의 마지막날짜의 일자 구하기
+        let lastDate = new Date(year, month + 1, 0);
+        let lastDay = lastDate.getDate(); //당해년도 월의 마지막일자
+
+        // 이달의 시작인 1일의 요일구하기
+        // 0:일 ~ 6:토 임에 주의하자
+        // 1월:0 ~ 12월:11 임에 주의하자
+        let startDate = new Date(year, month, 1);
+        let startDay = startDate.getDate(); //당해년도 월의 시작일자
+        let startWeek = startDate.getDay(); //당해년도 월의 시작일자의 요일 5
+        let rows = 0; //가로 시작
+
+        //배열 초기화
+        //배열을 초기화 하지 않으면  undefined가 출력되기때문에 반드시 초기화한다.
+        for (let i = 0; i < arr.length; i++) {
+          for (let j = 0; j < arr[0].length; j++) {
+            arr[i][j] = '';
+          }
+        }
+
+        // i=1 ~ i<=31 i++
+        for (let i = startDay; i <= lastDay; i++) {
+          // day=0, startWeek=5 => 시작일자부터 마지막일자까지  저장
+          arr[rows][startWeek] = i;
+          // 7일되면 줄바꿈 코드
+          if (startWeek < arr[rows].length - 1) {
+            startWeek++;
+          } else {
+            rows++;
+            startWeek = 0;
+          }
+        }
+      };
+
+      //화면에 출력하는 함수 작성
+      function display() {
+        calendar();
+        let tb = "<table class='cal_table'>";
+        // 가로줄
+        for (var i = 0; i < arr.length; i++) {
+          tb += '<tr>';
+          // 세로줄
+          for (var j = 0; j < arr[i].length; j++) {
+            tb += '<td>' + arr[i][j] + '</td>';
+          }
+          tb += '</tr>';
+        }
+        tb += '</table>';
+        // console.log(tb);
+        yearmonth = today.getFullYear() + '년 ' + (today.getMonth() + 1) + '월';
+        yearMonth.innerHTML = yearmonth;
+        displayTable.innerHTML = tb;
+      }
+
+      display();
+      todayChk();
+
+      //이전달 버튼 클릭
+      previousButton.addEventListener('click', () => {
+        today = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+        display();
+        todayChk();
+      });
+
+      // 다음달 버튼 클릭
+      nextButton.addEventListener('click', () => {
+        today = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+        display();
+        todayChk();
+      });
+
+      // 오늘 날짜 표시하기------------------------
+      function todayChk() {
+        let days = document.querySelectorAll('.displayTable .cal_table tr td ');
+        let nowday = new Date();
+        let nowYear = nowday.getFullYear();
+        let nowMonth = nowday.getMonth();
+
+        if (nowYear === today.getFullYear() && nowMonth === today.getMonth()) {
+          for (let i = 0; i < days.length; i++) {
+            if (days[i].innerHTML === today.getDate().toString()) {
+                days[i].classList.add('today');
+            }
+          }
+        }
+        console.log(days);
+      }
+    </script>
+  </body>
+</html>

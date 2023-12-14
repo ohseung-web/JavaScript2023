@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>슬라이드 이미지</title>
+    <link rel="stylesheet" href="slider02.css" />
+  </head>
+  <body>
+    <!-- <input type="checkbox" id="kkk"><label for="kkk">연습</label> -->
+    <div class="layer_modal">
+      <div class="bg_slider">
+        
+        <img src="images/btn-header-layer-close.png" alt="종료" />
+
+        <div class="tab_inner">
+          <img src="images/ic_stop.png" alt="">
+          <input type="radio" name="tabmenu" id="tab1" checked>
+          <input type="radio" name="tabmenu" id="tab2">
+          <input type="radio" name="tabmenu" id="tab3">
+          <input type="radio" name="tabmenu" id="tab4">
+          <input type="radio" name="tabmenu" id="tab5">
+        </div> 
+        <div class="chk">
+          <input type="checkbox" id="chkbox"><label for="chkbox">하루동안 보이지 않기</label>
+        </div>
+        <div class="slider">
+          <div class="inner_slider">
+            <a href="#"
+              ><img src="images/h9WStljlnJp29qE9WhRhoasiJ714JvoJ.jpg" alt=""
+            /></a>
+            <a href="#"
+              ><img src="images/iKuvWaaCWr2d46t0WKWtRz9oG5B5nzWt.jpg" alt=""
+            /></a>
+            <a href="#"
+              ><img src="images/cIZbJnbk1eTOTu6lEGwWjt0u9z3usO1E.jpg" alt=""
+            /></a>
+            <a href="#"
+              ><img src="images/Kz3yYq0fMPDttFnMskWcgkkeG4PySsLY.jpg" alt=""
+            /></a>
+            <a href="#"
+              ><img src="images/x5qkQ4TsUchCKekhyU8y3oCCpyYvvvOd.jpg" alt=""
+            /></a>
+          </div>
+        </div>
+        <div class="btn">
+          <label for="tab1"></label>
+          <label for="tab2"></label>
+          <label for="tab3"></label>
+          <label for="tab4"></label>
+          <label for="tab5"></label>
+        </div>
+      </div>
+    </div>
+    <script>
+      let btn = document.querySelectorAll('.layer_modal .bg_slider .btn label');
+      let slide = document.querySelector('.slider > .inner_slider');
+
+      for(let i=0; i<btn.length; i++){
+          btn[i].addEventListener('click', () => {
+              
+            for(let j=0; j<btn.length; j++){
+              btn[j].classList.remove('change');
+            }
+             btn[i].classList.add('change');
+             
+            for(let j=0; j<btn.length; j++){
+               slide.classList.remove('on');
+               slide.classList.remove('on01');
+               slide.classList.remove('on02');
+               slide.classList.remove('on03');
+               slide.classList.remove('on04');
+            }
+              if(i===0){
+                slide.classList.add('on');
+              }else if(i===1){
+                slide.classList.add('on01');
+              }else if(i===2){
+                slide.classList.add('on02');
+              }else if(i===3){
+                slide.classList.add('on03');
+              }else{
+                slide.classList.add('on04');
+              }
+              
+          })
+      }
+    </script>
+  </body>
+</html>

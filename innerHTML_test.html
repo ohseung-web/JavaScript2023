@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>innerHTML 테스트</title>
+  </head>
+  <body>
+    <!-- <button id="addBtn">
+    id가 "content"인 HTML 요소의 innerHTML 변경
+  </button>
+  <ul id="content">
+    <li>li-1</li>
+    <li>li-2</li>
+  </ul> -->
+
+    <button id="addBtn">id가 "content"인 HTML 요소의 innerHTML 변경</button>
+    <div id="content"></div>
+    <div id="test" style="display: none">안녕하세요</div>
+    <button type="button" id="innerTextBtn">클릭하세요</button>
+    <script>
+      let testbtn = document.querySelector('#test');
+      let textbtn = document.querySelector('#innerTextBtn');
+      textbtn.addEventListener('click', () => {
+        alert(testbtn.innerText);
+      });
+
+      const btn = document.querySelector('#addBtn');
+      const divNode = document.querySelector('#content');
+
+      btn.addEventListener('click', () => {
+        divNode.innerHTML = '<ul><li>li-1</li><li>li-2</li></ul>';
+      });
+      // const btn = document.getElementById("addBtn");
+
+      // btn.addEventListener("click", () => {
+      //   const ulNode = document.getElementById("content");
+      //   ulNode.innerHTML = "";
+      // });
+    </script>
+  </body>
+</html>

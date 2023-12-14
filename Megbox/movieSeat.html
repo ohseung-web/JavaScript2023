@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Megbox 영화좌석 예매</title>
+    <link rel="stylesheet" href="movie.css" />
+    <!-- <link rel="stylesheet" href="reset.css"> -->
+    <script
+      src="https://kit.fontawesome.com/2cd23a15d7.js"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="movie.js"></script>
+    <!-- defer : dom 을 불러오고 나서 실행됨 -->
+  </head>
+  <body>
+    <div class="container">
+      <p>빠른예매</p>
+      <div class="line"></div>
+      <div class="reserve">
+        <div class="reserve_left">
+          <div class="reserve_header">
+            <span>관람인원선택</span>
+            <button type="button" class="resetbtn">
+              <img src="images/ico-reset-small.png" alt="" />&nbsp;<span
+                >초기화</span
+              >
+            </button>
+          </div>
+          <div class="screen">
+            <div class="screen_header">
+              <div class="audalt">
+                <span>성인</span>
+                <button class="minus">-</button>
+                <label class="cnt">0</label>
+                <button class="plus">+</button>
+              </div>
+              <div class="teenager">
+                <span>청소년</span>
+                <button class="minus">-</button>
+                <label class="cnt">0</label>
+                <button class="plus">+</button>
+              </div>
+              <div class="disabled">
+                <span>우대</span>
+                <button class="minus">-</button>
+                <label class="cnt">0</label>
+                <button class="plus">+</button>
+              </div>
+            </div>
+            <div class="screen_seat">
+              <p class="screentext">SCREEN</p>
+              <div class="seat"></div>
+            </div>
+          </div>
+        </div>
+        <div class="reserve_right">
+          <div class="movieTitle">
+            <img src="images/age.jpg" alt="" />
+            <span>화란<em>2D</em></span>
+          </div>
+          <div class="movieDesc">
+            <div class="theaterDesc">
+              <p>강남대로(씨티)<br />1관</p>
+              <br>
+              <p>2023.10.16(월)</p>
+              <div class="time">
+                <button type="button" class="now">
+                  20:50~23:04<i class="fa-solid fa-angle-up"></i>
+                </button>
+                <ul class="other">
+                  <li class="otherTime">
+                    <a href="#">20:50~23:04</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="poster">
+              <img src="images/poster01.jpg" alt="" />
+            </div>
+          </div>
+          <div class="movieDetail">
+            <div class="detail_left">
+              <ul>
+                <li>
+                  <img src="images/bg-seat-condition-choice-s.png" alt="">
+                  <span>선택</span>
+                </li>
+                <li>
+                  <img src="images/bg-seat-condition-finish-s.png" alt="">
+                  <span>예매완료</span>
+                </li>
+                <li>
+                  <img src="images/bg-seat-condition-impossible-s.png" alt="">
+                  <span>선택불가</span>
+                </li>
+                <li>
+                  <img src="images/bg-seat-condition-common-s.png" alt="">
+                  <span>일반</span>
+                </li>
+                <li>
+                  <img src="images/bg-seat-condition-disabled-s.png" alt="">
+                  <span>장애인</span>
+                </li>
+              </ul>
+            </div>
+            <div class="detail_right">
+              <p>선택좌석</p>
+              <div class="seatchoice">
+                <div class="choice">-</div>
+                <div class="choice">-</div>
+                <div class="choice">-</div>
+                <div class="choice">-</div>
+                <div class="choice">-</div>
+                <div class="choice">-</div>
+                <div class="choice">-</div>
+                <div class="choice">-</div>
+              </div>
+            </div>
+          </div>
+          <div class="reserveStatus">
+            <div class="choicecount">성인</div>
+          </div>
+          <div class="moviePrice">
+            <div class="pricetitle">최종결제금액</div>
+            <div class="price">
+              <span>10,000</span>
+              <em>원</em>
+            </div>
+          </div>
+          <div class="movieButton">
+            <button class="beforebtn">이전</button>
+            <button class="nextbtn">다음</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dom 연습문제</title>
+  </head>
+  <body>
+    <ul>
+      <li>List item 1</li>
+
+      <li>List item 2</li>
+      <li>List item 3</li>
+      <li>List item 4</li>
+      <li>List item 5</li>
+    </ul>
+    <script>
+      var list = document.getElementsByTagName('ul')[0];
+      var allItems = list.getElementsByTagName('li');
+
+      for (var i = 0, length = allItems.length; i < length; i++) {
+        alert(allItems[i].firstChild.data);
+        // firstChild : 트리에서 노드의 첫 번째 자식이나 null(노드가 자식이 없으면)을 반환합니다.
+      }
+    </script>
+  </body>
+</html>

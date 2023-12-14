@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>메가박스 슬라이드</title>
+  <link rel="stylesheet" href="megaSlide.css">
+</head>
+<body>
+    <div class="left">
+      <button type="button" id="left-btn"></button>
+    </div>
+       <div class="slide">
+          <div class="slide-inner">
+             <a href="#none1" class="bg-dolby"></a>
+             <a href="#none2" class="bg-private"></a>
+             <a href="#none3" class="bg-boutique"></a>
+             <a href="#none4" class="bg-mx"></a>
+             <a href="#none5" class="bg-comfort"></a>
+             <a href="#none6" class="bg-puppynew"></a>
+             <a href="#none7" class="bg-kids"></a>
+          </div>
+       </div>
+    <div class="right" >
+      <button type="button" id="right-btn"></button>
+    </div>
+
+    <script>
+      let leftBtn = document.querySelector('#left-btn');
+      let rightBtn = document.querySelector('#right-btn');
+      let slide = document.querySelector('.slide > .slide-inner');
+      let changImg = document.querySelectorAll('.slide > .slide-inner > a');
+
+      leftBtn.addEventListener('click', () => {
+           slide.classList.add('activeleft');
+           slide.classList.remove('activeright');
+      })
+      rightBtn.addEventListener('click', () => {
+           slide.classList.add('activeright');
+           slide.classList.remove('activeleft');
+      })
+
+      for(let i=0; i<changImg.length; i++){
+           changImg[i].addEventListener('mouseover', () => {
+               changImg[i].classList.add('changeimg');
+               changImg[i].classList.remove('changeimgout');
+           })
+
+           changImg[i].addEventListener('mouseout', () => {
+               changImg[i].classList.add('changeimgout');
+               changImg[i].classList.remove('changeimg');
+           })
+      }
+    
+    </script>
+</body>
+</html>

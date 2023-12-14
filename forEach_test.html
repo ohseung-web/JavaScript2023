@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>forEach 연습문제</title>
+</head>
+<body>
+   <script>
+       const myArr = ['강아지', '고양이', '햄스터', '거북이', '이구아나'];
+
+        myArr.forEach((el, i) => {
+            console.log(i);
+            console.log(el);
+            if(el === '고양이') {
+              myArr.shift();
+            }
+        })
+
+       console.log(myArr); // ["고양이", "햄스터", "거북이", "이구아나"]
+   </script>
+</body>
+</html>

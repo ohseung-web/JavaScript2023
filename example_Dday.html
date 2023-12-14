@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>오늘부터 올해 년말까지 날수</title>
+  </head>
+  <body>
+    <h3></h3>
+    <hr />
+    <script>
+      var today = new Date();
+      var nowYear = today.getFullYear();
+      console.log(`nowyer : ${nowYear}`);
+
+      var theDate = new Date(nowYear, 11, 31); // 2023-12-31 날짜 구함
+      
+      // 1970년 1월 1일 00:00:00(UTC)를 기점으로 현재 시간까지 경과된 밀리초를 반환한다.
+      var diffDate = theDate.getTime() - today.getTime();
+      console.log(`12월 31일 : ${theDate}`);
+      console.log(`diffDate : ${diffDate}`);
+      console.log(`12월 31일의 시간 : ${theDate.getTime()}`);
+      // 1970년 1월 1일 부터 ~ 오늘까지의 시간이 밀리초로 반환되기 때문에
+      // 밀리초로 변경하여 오늘까지의 시간을 나누면 1970년 1월 1일 이후부터 ~ 오늘까지의 날수를 계산할 수 있다.
+      // 1초는 1000ms => 1분은 60초 => 60*1000 => 1시간 60 => 하루는 24시간
+      // 60 * 1000 * 60 * 24 : 86,400,000 (하루를 ms초로 변경한 값)
+      console.log(`오늘시간 : ${today.getTime() / (1000 * 60 * 60 * 24)}`);
+
+      var result = Math.ceil(diffDate / (60 * 1000 * 60 * 24));
+      console.log(`result : ${result}`);
+      document.write('<h1>오늘부터 올해 연말까지 남은 날짜</h1>');
+      document.write('D-day: ' + result + '일 남았습니다.');
+    </script>
+  </body>
+</html>

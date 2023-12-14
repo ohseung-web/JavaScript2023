@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>정규표현식 문자 찾기</title>
+  </head>
+  <body>
+    <script>
+      // 특정 단어로 끝나는 지 검사
+      const fileName = 'index.html';
+
+      // 'html'로 끝나는지 검사
+      // $ : 문자열의 끝을 의미한다.
+      const regexr01 = /html$/;
+      console.log(regexr01.test('html'));
+
+      // 숫자로만 이루어 저있는지 검사
+      const targetStr = '12345';
+
+      // 모두 숫자인지 검사
+      // [] 바깥의 ^는 문자열의 처음을 의미한다.
+      const regexr02 = /^\d+$/;
+      console.log(regexr02.test('1234'));
+
+      const id = 'abc123';
+
+      // 알파벳 대소문자 또는 숫자로 시작하고 끝나며 4 ~10자리인지 검사
+      // {4,10}: 4 ~ 10자리
+      const regexr03 = /^[A-Za-z0-9]{4,10}$/;
+      console.log(regexr03.test('ac123'));
+
+      // 핸드폰 번호 형식
+      const cellphone = '010-1234-5678';
+
+      const regexr04 = /^\d{3}-\d{3,4}-\d{4}$/;
+      console.log(regexr04.test('010-12-4287'));
+
+      // 웹사이트 주소 형식
+      const text = `http://dogumaster.com http://google.com 010-1111-2222 02-333-7777 curryyou@aaa.com`;
+
+      const regex05 = text.match(/https?:\/\/[\w\-\.]+/g); // ["http://dogumaster.com", "http://google.com"]
+      /*
+      1) http => 로 시작하고,
+      2) s? => 다음에 s는 없거나, 있고,
+      3) \/\/ => 다음에 특수기호 // 가 오고
+      4) [\w\-\.]+ => \w(영문자, 언더스코어(_)), 하이픈, 쩜 으로 이루어진 문자열이 한개 이상(+) 있다.
+      5) g => 매칭되는걸 모두 다 찾는다.(플래그)
+      */
+      console.log(regex05);
+
+      const regex06 =  text.match(/\d{2,3}-\d{3,4}-\d{4}/g); // [ '010-1111-2222', '02-333-7777' ]
+      /*
+      1) \d{2,3} => 숫자 2~3개로 시작하고,
+      2) \- => 다음에 하이픈(-)이 오고
+      3) \d{3, 4} => 다음에 숫자가 3~4개 오고,
+      4) \- => 다음에 하이픈(-)이 오고,
+      5) \d{4} => 다음에 숫자가 4개 온다.
+      6) g => 매칭되는걸 모두 다 찾는다(플래그)
+      */
+
+      console.log(regex06);
+
+      // 이메일 주소 형식
+      const text01 = `http://dogumaster.com http://google.com 010-1111-2222 02-333-7777 curryyou@aaa.com`; 
+
+      const regex07 = text01.match(/[\w\-\.]+\@[\w\-\.]+/g); // [ 'curryyou@aaa.com' ]
+      console.log(regex07);
+      // 좀더 엄격한 검사가 필요하다면, 상황에 맞게 수정해서 사용면 된다.
+      const email = 'ungmo2@gmail.com';
+
+      const regexr = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+      console.log(email.match(regexr));
+
+      // 특수기호 정규표현식
+      // 모든 특수기호를 나열
+      const text011 = `http://dogumaster.com http://google.com 010-1111-2222 02-333-7777 curryyou@aaa.com`; 
+      const regex08 = /\[\]\{\}\/\(\)\.\?\<\>!@#$%^&*/g
+
+      // 문자와 숫자가 아닌것을 매칭
+      const regex09 = /[^a-zA-Z0-9가-힣ㄱ-ㅎ]/g
+      console.log(text011.match(regex09));
+    </script>
+  </body>
+</html>

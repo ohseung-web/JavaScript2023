@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>키오스크 커피</title>
+    <link rel="stylesheet" href="kioskCoff.css" />
+    <link rel="stylesheet" href="reset.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="order_menu">
+        <h2>원하시는 음료를 선택해 주세요</h2>
+        <p>Please choose the drink you want.</p>
+        <div class="section1">
+          <h2>MENU</h2>
+          <div class="menubox"></div>
+        </div>
+      </div>
+      <div class="order_list">
+        <div class="section2">
+          <h2>주문내역</h2>
+          <div class="orderbox"></div>
+        </div>
+      </div>
+      <div class="order_result">
+        <h2>총 주문금액 : <span class="pay">0원</span></h2>
+        <span class="line">&boxv;</span>
+        <button class="btn">현금결제</button>
+      </div>
+    </div>
+    <script>
+      // Array와 Object를 이용하여 메뉴판만들기
+      let menubox = document.querySelector('.menubox');
+
+      let menus = [
+        { num: 0, name: '아메리카노', type: 'HOT', price: 1000 },
+        { num: 1, name: '아메리카노', type: 'ICE', price: 1300 },
+        { num: 2, name: '바닐라라떼', type: 'HOT', price: 2500 },
+        { num: 3, name: '바닐라라떼', type: 'ICE', price: 2800 },
+        { num: 4, name: '연유라떼', type: 'HOT', price: 2500 },
+        { num: 5, name: '연유라떼', type: 'ICE', price: 2800 },
+        { num: 6, name: '카라멜마끼아또', type: 'HOT', price: 2800 },
+        { num: 7, name: '카라멜마끼아또', type: 'ICE', price: 3000 },
+        { num: 8, name: '카페모카', type: 'HOT', price: 3000 },
+        { num: 9, name: '카페모카', type: 'ICE', price: 3300 },
+        { num: 10, name: '딥카페라테', type: 'HOT', price: 3400 },
+        { num: 11, name: '딥카페라테', type: 'ICE', price: 3700 },
+      ];
+      let menulist = '<ul>';
+      for (let i = 0; i < menus.length; i++) {
+        if (menus[i].type === 'HOT') {
+          menulist += '<li class="hot"';
+        } else {
+          menulist += '<li class="ice"';
+        }
+        menulist += `><i></i><span>${menus[i].type}</span><strong>${menus[i].name}</strong><em>${menus[i].price}</em></li>`;
+      }
+      menulist += '</ul>';
+      menubox.innerHTML = menulist;
+
+      let select = menubox.querySelectorAll('li');
+      let orderBox = document.querySelector('.orderbox');
+      let totalPrice = document.querySelector('.pay');
+      let orderlist = orderBox.getElementsByClassName('orderlist');
+      let index = 0; // orderArr의 배열 인텍스 번호
+      let orderArr = []; // 선택한 메뉴 프로퍼티들을 담을 배열 방
+
+      for (let i = 0; i < select.length; i++) {
+        select[i].addEventListener('click', () => {
+          // 제선택 방지 코드
+          let sel = select[i];
+          if (sel.title === '') {
+            sel.title = '선택됨'; // li에 선택되면 <li title="선택됨">
+
+            orderArr[index] = {
+              // 선택한 menus의 프로퍼티들을 객체로 저장하는코드
+              menuno: menus[i].num,
+              name: menus[i].name,
+              type: menus[i].type,
+              quantity: 1,
+              price: menus[i].price,
+            };
+            orderBox.innerHTML += `<div class="orderlist"><p>${orderArr[index].name}(${orderArr[index].type})<em>${orderArr[index].quantity}</em>개,<span>${orderArr[index].price.toLocaleString(orderArr[index].price)}</span>원</p><button type="button" onclick="quant(${index},${i},false);">-</button><button type="button" onclick="quant(${index},${i},true);">+</button><button type="button" onclick="cancel(${index},${i});">선택취소</button></div>`;
+            result();
+            index++;
+          }
+        });
+      }
+
+      // 플러스, 마이너스 버튼 클릭시 개수 증가 감소 함수
+      function quant(orderNo, menuNo, isBool) {
+        //orderNo : orderArr의 index번호
+        //menuNo : menus.num 번호
+        //quant의 ture, false 값
+        if (isBool === true) {
+          orderArr[orderNo].quantity++;
+        } else {
+          if (orderArr[orderNo].quantity > 1) {
+            orderArr[orderNo].quantity--;
+          }
+        }
+        orderArr[orderNo].price =
+          orderArr[orderNo].quantity * menus[menuNo].price;
+
+        let cnt = orderlist[orderNo].getElementsByTagName('em')[0];
+        let money = orderlist[orderNo].getElementsByTagName('span')[0];
+        cnt.innerText = orderArr[orderNo].quantity;
+        money.innerText = orderArr[orderNo].price.toLocaleString(orderArr[orderNo].price);
+        result();
+      }
+
+      // 선택취소 버튼 함수
+      function cancel(orderNo, menuNo) {
+        orderArr.splice(orderNo, 1); //배열의 지정한 orderNO를 삭제한다.
+        let list = orderlist[orderNo];
+        list.remove();
+        // list.parentNode.removeChild(list);
+        // li태그의 title ="선택됨"을 리셋해야 함
+        select[menuNo].title = '';
+        index--;
+
+        result();
+      }
+
+      // 총 주문금액 함수 result 함수
+      function result() {
+        let total = 0;
+        for (let i = 0; i < orderArr.length; i++) {
+          total += Number(orderArr[i].price);
+        }
+        totalPrice.innerText = `${total.toLocaleString(total)}원`;
+        // total.toLocaleString(total) : 숫자 천단위 마다 , 찍는 메서드
+      }
+    </script>
+  </body>
+</html>

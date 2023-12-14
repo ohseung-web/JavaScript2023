@@ -1,0 +1,86 @@
+*{box-sizing: border-box;}
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+button{
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+  width: 16px;
+  height: 29px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin: 0 20px;
+}
+#left-btn{
+  background-image: url('images/btn-specialtheater-prev.png');
+}
+#right-btn{
+  background-image: url('images/btn-specialtheater-next.png');
+}
+.slide .slide-inner.activeleft{
+  left : 0px;
+  transition: 0.5s;
+}
+.slide .slide-inner.activeright{
+ left :-195px;
+ transition: 0.5s;
+}
+.slide{
+  width: 1200px;
+  height: 190px;
+  position: relative;
+  overflow: hidden;
+  /* border: 1px solid red; */
+}
+.slide-inner{
+  width: 1550px;
+  font-size: 0;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+.slide .slide-inner a{
+  margin: 0 5px;
+  display:inline-block;
+  width: 190px;
+  height: 190px;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  border-radius: 10px;
+}
+.slide .slide-inner .bg-dolby{
+  background-image: url('images/bg-main-megainfo-dolby.png');
+}
+.slide .slide-inner .bg-private{
+  background-image: url('images/bg-main-megainfo-private.png');
+}
+.slide .slide-inner .bg-boutique{
+  background-image: url('images/bg-main-megainfo-boutique.png');
+}
+.slide .slide-inner .bg-mx{
+  background-image: url('images/bg-main-megainfo-mx.png');
+}
+.slide .slide-inner .bg-comfort{
+  background-image: url('images/bg-main-megainfo-comfort.png');
+}
+.slide .slide-inner .bg-puppynew{
+  background-image: url('images/bg-main-megainfo-puppy.jpg');
+}
+.slide .slide-inner .bg-kids{
+  background-image: url('images/bg-main-megainfo-kids.png');
+}
+/* 이미지 마우스 오버 아웃시 이미지 변경 css */
+.slide .slide-inner a.changeimg{
+  background-position: bottom;
+}
+.slide .slide-inner a.changeimgout{
+  background-position: top;
+}

@@ -1,0 +1,137 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: antiquewhite;
+}
+.layer_modal {
+  width: 400px;
+  height: 400px;
+  /* border: 1px solid blue; */
+}
+.layer_modal .bg_slider {
+  width: 360px;
+  height: 325px;
+  background-color: white;
+  border-radius: 10px;
+  /* border: 1px solid red; */
+  position: relative;
+}
+.layer_modal .bg_slider .tab_inner {
+  width: 150px;
+  height: 30px;
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+}
+/* input 라디오버튼 화면 숨기고 label로 대체 한다. */
+.layer_modal .bg_slider .tab_inner input[name='tabmenu'] {
+  display: none;
+}
+.layer_modal .bg_slider .btn {
+  width: 120px;
+  height: 30px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  bottom: 10px;
+  left: 30px;
+  text-align: center;
+  /* margin-top:10px; */
+  /* border: 1px solid red; */
+  z-index: 10;
+}
+.layer_modal .bg_slider .btn label {
+  /* display: inline-block; */
+  width: 12px;
+  height: 12px;
+  background-color: lightgray;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.layer_modal .bg_slider .tab_inner > img {
+  width: 7px;
+  height: 12px;
+}
+.layer_modal .bg_slider > img {
+  position: absolute;
+  right: -3%;
+  top: -3%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.layer_modal .bg_slider .slider {
+  width: 320px;
+  height: 260px;
+  /* border: 1px solid yellowgreen; */
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+}
+.layer_modal .bg_slider .slider .inner_slider {
+  width: 1600px;
+  height: 260px;
+  position: absolute;
+  font-size: 0;
+  transition: 0.5s;
+}
+/* 이미지 변경 css */
+.layer_modal .bg_slider .slider .inner_slider.on {
+  left: 0px;
+  transition: 0.5s;
+}
+.layer_modal .bg_slider .slider .inner_slider.on01 {
+  left: -320px;
+  transition: 0.5s;
+}
+.layer_modal .bg_slider .slider .inner_slider.on02 {
+  left: -640px;
+  transition: 0.5s;
+}
+.layer_modal .bg_slider .slider .inner_slider.on03 {
+  left: -960px;
+  transition: 0.5s;
+}
+.layer_modal .bg_slider .slider .inner_slider.on04 {
+  left: -1280px;
+  transition: 0.5s;
+}
+/* ---------------------- */
+.layer_modal .bg_slider .slider .inner_slider a > img {
+  width: 320px;
+  height: 260px;
+  border-radius: 10px;
+}
+.layer_modal .bg_slider .chk {
+  width: 150px;
+  height: 30px;
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  z-index: 10px;
+}
+.layer_modal .bg_slider .chk label {
+  font-size: 12px;
+  color: darkgray;
+  word-spacing: -3px;
+  font-weight: bold;
+}
+.layer_modal .bg_slider > .btn > label.change {
+  background-color: blueviolet;
+  transition: 0.5s;
+}

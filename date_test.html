@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Date 객체</title>
+  </head>
+  <body>
+    <script>
+      //  const today = new Date();
+      //  console.log(`오늘날짜 ${today}`);
+
+      // 86400000ms는 1day를 의미한다.
+      // 1s = 1,000ms
+      // 1m = 60s * 1,000ms = 60,000ms
+      // 1h = 60m * 60,000ms = 3,600,000ms
+      // 1d = 24h * 3,600,000ms = 86,400,000ms
+      // const date = new Date(86400000);
+      // console.log(date);
+
+      // let date = new Date('September 08,2023 14:50:00');
+      // console.log(date);
+
+      // date = new Date('2023/09/08/14:50:00');
+      // console.log(date);
+
+      // 월을 나타내는 8는 9월을 의미한다.
+      // 2023/9/8/15:00:00:00
+      // let date = new Date(2023, 8);
+      // console.log(date);
+
+      // 월을 나타내는 8는 9월을 의미한다.
+      // 2023/9/8/15:04:00:00
+      // date = new Date(2023, 8, 8, 15, 4, 0, 0);
+      // console.log(date);
+
+      // 가독성이 훨씬 좋다.
+      // date = new Date('2023/9/08/15:04:00:00');
+      // console.log(date);
+
+      // let today = Date();
+      // console.log(typeof today, today);
+
+      // let now = Date.now();
+      // console.log((now/86400000)/365);
+      // 19608.264520671295 일 // 53년 => 1970+53 : 2023년
+
+      // let d = Date.parse('Jan 2, 1970 00:00:00 UTC'); // UTC
+      // console.log(d); // 86400000
+
+      // d = Date.parse('Jan 2, 1970 09:00:00'); // KST
+      // console.log(d); // 86400000
+
+      // d = Date.parse('1970/01/02/09:00:00'); // KST
+      // console.log(d); // 86400000
+
+      // let d = Date.UTC(1970,0,2);
+      // console.log(d);
+
+      // d=Date.UTC('1970/1/2');
+      // console.log(d);
+
+      // let today = new Date();
+      // let year = today.getFullYear();
+
+      // console.log(today);
+      // console.log(year);
+
+      // const today = new Date();
+      // const month = today.getMonth();
+
+      // console.log(today); //Fri Sep 08 2023 15:52:43 GMT+0900 (한국 표준시)
+      // console.log(month); // 8
+
+      // 년도 지정
+      // today.setFullYear(2000);
+
+      // let year = today.getFullYear();
+      // console.log(today); // Fri Sep 08 2000 15:46:24 GMT+0900 (한국 표준시)
+      // console.log(year);  // 2000
+
+      // // 년도 지정
+      // today.setFullYear(1900, 0, 1);
+
+      // year = today.getFullYear();
+      // console.log(today); // Mon Jan 01 1900 17:42:40 GMT+0827 (한국 표준시)
+      // console.log(year);  // 1900
+
+      // const today = new Date();
+
+      // //월을 지정
+      // today.setMonth(0);
+
+      // let month = today.getMonth();
+      // console.log(today);
+      // console.log(month);
+
+      // //월, 일 지정
+      // today.setMonth(11,1);
+      // month = today.getMonth();
+      // console.log(today);
+      // console.log(month);
+
+      // const today = new Date();
+      // const date = today.getDate();
+
+      // console.log(today); // Fri Sep 08 2023 16:04:50 GMT+0900 (한국 표준시)
+      // console.log(date);  // 8
+
+      // const today = new Date();
+
+      // // 날짜 지정
+      // today.setDate(1);
+
+      // const date = today.getDate();
+      // console.log(today); // Fri Sep 01 2023 16:06:10 GMT+0900 (한국 표준시)
+      // console.log(date);  // 1
+
+      // const today = new Date();
+      // const day = today.getDay();
+
+      // console.log(today); // Fri Sep 08 2023 16:09:38 GMT+0900 (한국 표준시)
+      // console.log(day);   // 5
+
+      // const today = new Date();
+      // const hours = today.getHours();
+
+      // console.log(today); // Fri Sep 08 2023 16:11:45 GMT+0900 (한국 표준시)
+      // console.log(hours); // 16
+
+      // const today = new Date();
+
+      // // 시간 지정
+      // today.setHours(7);
+
+      // let hours = today.getHours();
+      // console.log(today); // Fri Sep 08 2023 07:13:52 GMT+0900 (한국 표준시)
+      // console.log(hours); // 7
+
+      // // 시간/분/초/밀리초 지정
+      // today.setHours(0, 0, 0, 0); // 00:00:00:00
+
+      // hours = today.getHours();
+      // console.log(today); // Fri Sep 08 2023 00:00:00 GMT+0900 (한국 표준시)
+      // console.log(hours); // 0
+
+      // const today = new Date();
+      // const minutes = today.getMinutes();
+
+      // console.log(today);   // Fri Sep 08 2023 16:17:34 GMT+0900 (한국 표준시)
+      // console.log(minutes); // 17
+
+      // const today = new Date();
+
+      // // 분 지정
+      // today.setMinutes(50);
+
+      // let minutes = today.getMinutes();
+      // console.log(today);   // Fri Sep 08 2023 16:50:18 GMT+0900 (한국 표준시)
+      // console.log(minutes); // 50
+
+      // // 분/초/밀리초 지정
+      // today.setMinutes(5, 10, 999); // HH:05:10:999
+
+      // minutes = today.getMinutes();
+      // console.log(today);   // Fri Sep 08 2023 16:05:10 GMT+0900 (한국 표준시)
+      // console.log(minutes); // 5
+
+      // const today = new Date();
+      // const seconds = today.getSeconds();
+
+      // console.log(today);   // Fri Sep 08 2023 16:22:02 GMT+0900 (한국 표준시)
+      // console.log(seconds); // 2
+
+      // const today = new Date();
+
+      // // 초 지정
+      // today.setSeconds(30);
+
+      // let seconds = today.getSeconds();
+      // console.log(today); // Fri Sep 08 2023 16:23:30 GMT+0900 (한국 표준시)
+      // console.log(seconds); // 30
+
+      // // 초/밀리초 지정
+      // today.setSeconds(10, 0); // HH:MM:10:000
+
+      // seconds = today.getSeconds();
+      // console.log(today); // Fri Sep 08 2023 16:23:10 GMT+0900 (한국 표준시)
+      // console.log(seconds); // 10
+
+      // const today = new Date();
+      // const ms = today.getMilliseconds();
+
+      // console.log(today); // Fri Sep 08 2023 16:26:18 GMT+0900 (한국 표준시)
+      // console.log(ms); // 110
+
+      // const today = new Date();
+
+      // // 밀리초 지정
+      // today.setMilliseconds(123);
+
+      // const ms = today.getMilliseconds();
+      // console.log(today); // Fri Sep 08 2023 16:27:43 GMT+0900 (한국 표준시)
+      // console.log(ms); // 123
+
+      // const today = new Date();
+      // const time = today.getTime();
+
+      // console.log(today); // Fri Sep 08 2023 16:30:12 GMT+0900 (한국 표준시)
+      // console.log(time); // 1694158232509
+
+      // const today = new Date();
+
+      // // 1970년 1월 1일 00:00:00(UTC)를 기점으로 현재 시간까지 경과된 밀리초 지정
+      // today.setTime(86400000); // 86400000 === 1day
+
+      // const time = today.getTime();
+      // console.log(today); // Fri Jan 02 1970 09:00:00 GMT+0900 (한국 표준시)
+      // console.log(time); // 86400000
+
+      // const today = new Date();
+      // const x = today.getTimezoneOffset() / 60; // -9
+
+      // console.log(today); // Fri Sep 08 2023 16:34:20 GMT+0900 (한국 표준시)
+      // console.log(x); // -9
+
+      // const d = new Date('2023/9/08/18:30');
+
+      // console.log(d.toString()); // Fri Sep 08 2023 18:30:00 GMT+0900 (한국 표준시)
+      // console.log(d.toDateString()); // Fri Sep 08 2023
+
+      // const d = new Date('2023/9/08/18:30');
+
+      // console.log(d.toString()); // Fri Sep 08 2023 18:30:00 GMT+0900 (한국 표준시)
+      // console.log(d.toTimeString()); // 18:30:00 GMT+0900 (한국 표준시)
+
+      const today = new Date();
+      console.log(today.toLocaleTimeString()); //오후 5:00:31
+
+      //1 밀리초 = 0.001 초,	10 밀리초 = 0.01 초,	2500 밀리초 = 2.5 초
+      setTimeout(() => console.log('2초 후에 실행됨'), 2000);
+    </script>
+  </body>
+</html>

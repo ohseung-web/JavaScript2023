@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>정규표현식 문자 찾기</title>
+  </head>
+  <body>
+    <div class="search">
+      <p>
+        그래픽 카드 a급 제품 재고량은 10개 입니다. 011-8821-1000 로 연락 주시길
+        바랍니다. Thank you~!
+      </p>
+      <hr />
+      <p class="answer"></p>
+    </div>
+    <script>
+      // 1) '다'하나만 찾는다.
+      // 2) '다'모두를 찾는다.
+      // 3) '그래픽 카드'를 찾는다.
+      // 4) 숫자 0~9 모두를 찾는다.
+      // 5) 숫자 0~9 가 아닌 것을 모두를 찾는다.
+      // 6) 영어 알파벳 대소문자를 모두를 찾는다.
+      // 7) 한글, 영문, 숫자, 공백을제외한 특수문자를 모두 찾는다.
+
+      
+      const text = document.querySelector('.search p').innerHTML;
+      const answer = document.querySelector('.answer');
+      // 1)번 풀이 : '다'하나만 찾는다.
+      const search01 = text.match(/다/);
+      answer.innerHTML = search01;
+      // 2)번 풀이 : '다'모두를 찾는다.
+      const search02 = text.match(/다/g);
+      answer.innerHTML = search02;
+      // 3)번 풀이 : '그래픽 카드'를 찾는다.
+      const search03 = text.match(/그래픽 카드/g);
+      answer.innerHTML = search03;
+      // 4)번 풀이 : 숫자 0~9 모두를 찾는다.
+      const search04 = text.match(/[0-9]/g);
+      // const search04 = text.match(/\d/g);
+      answer.innerHTML = search04;
+      // 5)번 풀이 :숫자 0~9 가 아닌 것을 모두를 찾는다.
+      const search05 = text.match(/\D/g);
+      // const search05 = text.match(/[^0-9]/g);
+      answer.innerHTML = search05;
+      // 6)번 풀이 : 영어 알파벳 대소문자를 모두를 찾는다.
+      const search06= text.match(/[a-z]/ig);
+      answer.innerHTML = search06;
+      // 7)번 풀이 : 한글, 영문, 숫자, 공백을제외한 특수문자를 모두 찾는다.
+      const search07 = text.match(/[^ㄱ-힣\w\s]/g);
+      answer.innerHTML = search07;
+    </script>
+  </body>
+</html>

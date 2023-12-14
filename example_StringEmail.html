@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>String 연습문제 5번</title>
+</head>
+<body>
+    <script>
+      let userEmail = prompt("당신의 이메일 주소는?", "");
+      let arrUrl = [".co.kr", ".com", ".net", ".or.kr", ".go.kr"];
+      let chk = -1;
+
+      if(userEmail.search('@') === -1){
+         alert("이메일 형식이 잘못되었습니다."); 
+      }else{
+          for(let i=0; i<arrUrl.length; i++){
+              if(userEmail.includes(arrUrl[i])){
+                 chk = 0;
+              }
+          }
+          if(chk === -1 ){
+             alert("이메일 형식이 잘못되었습니다.");
+          }else{
+             document.write(userEmail) ;
+          }
+      }
+
+      // let check1 = false;
+      // let check2 = false;
+
+      // if( userEmail.indexOf("@") > 0 ) { check1=true; }
+
+      // for(var i = 0; i < arrUrl.length; i++) {
+      //   if( userEmail.indexOf(arrUrl[i]) > 0 ) {
+      //     check2 = true;
+      //   } 
+      // }
+
+      // if( check1 && check2 ) {
+      //   document.write( userEmail );
+      // } else {
+      //   alert("이메일 형식이 잘못되었습니다.");
+      // }
+    </script>
+</body>
+</html>

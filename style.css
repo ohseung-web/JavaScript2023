@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700,900&display=swap');
+
+*{
+  font-family: 'Noto Sans KR', sans-serif;
+  box-sizing: border-box;
+}
+body{
+  font-weight: 300;
+  color: black;
+  font-size: 15px;
+  line-height: 1.6em;
+}
+.modal{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 10;
+  opacity: 0;
+  /* display: none; */
+  transition: 0.5s;
+   /* 화면에 보이지 않게 지정*/
+}
+.modal-conetent{
+  /* border: 1px solid black; */
+  width: 600px;
+  background-color: white;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+}
+.modal-conetent > div{
+  padding: 20px;
+}
+.photo{
+  flex: 1;
+  background-image: url('images/office.jpg');
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: cover;
+}
+.description{
+  flex: 2;
+  text-align: center;
+}
+.overlay{
+  background-color: rgba(0, 0, 0, 0.235);
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+.btn-close{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  color: #999;
+  cursor: pointer;
+}
+.btn-close:hover{
+  color: black;
+}
+.btn-open{
+  cursor: pointer;
+}
+.desc-content input[type=email]{
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 7px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+/* input에 클릭하면  placeholder 글자가 서서히 숨겨지는 CSS */
+.desc-content input[type=email]::placeholder{
+  color: #bbb;
+  transition: 0.5s;
+}
+.desc-content input[type=email]:focus::placeholder{
+  visibility: hidden;
+  opacity: 0;
+}
+.desc-content button{
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: crimson;
+  color: white;
+  cursor: pointer;
+  padding: 7px;
+}
+/* modal과 overlay에 active class를 추가하여 [뉴스레이터]버튼을 클릭하면 모달창이 화면에 보이도록 opacity:1로 지정하는 CSS 작성한다. */
+.modal.active{
+  opacity: 1;
+  display: block;
+}
+.overlay.active{
+  opacity: 1;
+  visibility: visible;
+}

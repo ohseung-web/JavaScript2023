@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dom 연습문제</title>
+  </head>
+  <body>
+    <a href="javascript:add();">보여주기</a>
+    <a href="javascript:remove();">사라지기</a>
+    <script>
+          function add() {
+                var tables = document.createElement('table');   //table태그 요소노드 생성
+                tables.setAttribute('id', 'target');   //table태그 요소에 id 속성을 붙여줌(선택사항)
+                var trs = document.createElement('tr');   //tr태그 요소노드 생성
+                var tds = document.createElement('td');   //td태그 요소노드 생성
+                var textNode = document.createTextNode('저는 현재 공부 중입니다.');   //텍스트노드 생성
+                tables.appendChild(trs).appendChild(tds).appendChild(textNode);   //table요소노드에 나머지 연결시킴
+                //여기까지 코딩한다고 해서는 아무것도 안 나온다.
+    
+                document.body.appendChild(tables);  
+                    //기존에 html문서안에서 상주하고 있는 body요소 노드에 tables요소를 연결시켜 줘야한다.
+            }
+          function remove() {
+                var target = document.getElementById('target');
+                target.parentNode.removeChild(target);
+                //일반적으로 문서객체를 삭제할 때 사용하는 방법
+            }
+    </script>
+    
+  </body>
+</html>

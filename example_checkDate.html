@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>오늘부터 올해 년말까지 날수</title>
+  </head>
+  <body>
+    구입날짜:
+    <input type="date" id="pdate" />
+    <button onclick="checkDate()">검사</button>
+    <script>
+      function checkDate() {
+        let p = document.querySelector('#pdate').value;
+        let pdate = new Date(p);
+        console.log(`p의 값 ${p}`)
+        let today = new Date();
+        let diff = Math.abs(today.getTime() - pdate.getTime());
+        let days = Math.floor(diff / (60 * 1000 * 60 * 24));
+
+        if (days > 30) {
+          alert('교환 기간이 지났습니다.');
+        }
+      }
+    </script>
+  </body>
+</html>

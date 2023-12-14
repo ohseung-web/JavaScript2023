@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>키오스크 커피</title>
+    <link rel="stylesheet" href="kioskCoff.css" />
+    <link rel="stylesheet" href="reset.css" />
+    <script src="https://kit.fontawesome.com/2cd23a15d7.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="order_menu">
+        <h2>원하시는 음료를 선택해 주세요</h2>
+        <p>Please choose the drink you want.</p>
+        <div class="section1">
+          <h2>MENU</h2>
+          <div class="menubox"></div>
+        </div>
+      </div>
+      <div class="order_list">
+        <div class="section2">
+          <h2>주문내역</h2>
+          <div class="orderbox"></div>
+        </div>
+      </div>
+      <div class="order_result">
+        <h2>총 주문금액 : <span class="pay">0원</span></h2>
+        <span class="line">&boxv;</span>
+        <button class="btn">카드결제</button>
+      </div>
+    </div>
+    <div class="modal">
+      <div class="modalcontent">
+        <div class="poto">
+          <img src="images/cardImg.png" alt="">
+        </div>
+        <div class="desc">
+          <span>결재가 완료 되었습니다.</span>
+          <p>카드를 뽑아주세요.</p>
+          <button class="btn-close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+    </div> 
+    <script>
+      // Array와 Object를 이용하여 메뉴판만들기
+      let menubox = document.querySelector('.menubox');
+
+      let menus = [
+        { num: 0, name: '아메리카노', type: 'HOT', price: 1000 },
+        { num: 1, name: '아메리카노', type: 'ICE', price: 1300 },
+        { num: 2, name: '바닐라라떼', type: 'HOT', price: 2500 },
+        { num: 3, name: '바닐라라떼', type: 'ICE', price: 2800 },
+        { num: 4, name: '연유라떼', type: 'HOT', price: 2500 },
+        { num: 5, name: '연유라떼', type: 'ICE', price: 2800 },
+        { num: 6, name: '카라멜마끼아또', type: 'HOT', price: 2800 },
+        { num: 7, name: '카라멜마끼아또', type: 'ICE', price: 3000 },
+        { num: 8, name: '카페모카', type: 'HOT', price: 3000 },
+        { num: 9, name: '카페모카', type: 'ICE', price: 3300 },
+        { num: 10, name: '딥카페라테', type: 'HOT', price: 3400 },
+        { num: 11, name: '딥카페라테', type: 'ICE', price: 3700 },
+      ];
+      let menulist = '<ul>';
+      for (let i = 0; i < menus.length; i++) {
+        if (menus[i].type === 'HOT') {
+          menulist += '<li class="hot"';
+        } else {
+          menulist += '<li class="ice"';
+        }
+        menulist += `><i></i><span>${menus[i].type}</span><strong>${menus[i].name}</strong><em>${menus[i].price}</em></li>`;
+      }
+      menulist += '</ul>';
+      menubox.innerHTML = menulist;
+
+      let select = menubox.querySelectorAll('li');
+      let menuboxName = menubox.querySelectorAll('li strong');
+      let menuboxtype = menubox.querySelectorAll('li span');
+      let orderBox = document.querySelector('.orderbox');
+      let orderlist = orderBox.getElementsByClassName('orderlist');
+      let totalMemoy = document.querySelector('.pay');
+
+      let orderArr = []; // cnt 개수만 담는 방
+      for (let i = 0; i < menus.length; i++) {
+        orderArr.push({ num: i, cnt: 0 });
+      }
+
+      for (let i = 0; i < select.length; i++) {
+        select[i].addEventListener('click', () => {
+          // 제선택 방지 코드
+          let orderlistName = document.querySelectorAll(
+            '.orderbox div p strong'
+          );
+          let orderlisttype = document.querySelectorAll('.orderbox div p i');
+          let chk = -1;
+
+          for (let j = 0; j < orderlist.length; j++) {
+            if (
+              menuboxName[i].innerText === orderlistName[j].innerText &&
+              menuboxtype[i].innerText === orderlisttype[j].innerText
+            ) {
+              chk = 0;
+            }
+          }
+
+          if (chk === 0) {
+            alert('이미 선택한 메뉴입니다.');
+          } else {
+            if (orderArr[i].cnt < 1) {
+              orderArr[i].cnt++;
+              orderBox.innerHTML += `<div class='orderlist' id='list${i}'><p><strong>${
+                menus[i].name
+              }</strong>(<i>${menus[i].type}</i>)<em id='cnt${i}'>${
+                orderArr[i].cnt
+              }</em>개,<span id='menoy${i}'>${menus[i].price.toLocaleString(
+                menus[i].price
+              )}</span>원</p><button type="button" onclick="addSub(${i},false);">-</button><button type="button" onclick="addSub(${i},true);">+</button><button type="button" onclick="cancel(${i});">선택취소</button></div>`;
+            }
+            // toLocaleString(): 숫자 세자리마다 , 찍는 함수
+            result();
+          }
+        });
+      }
+
+      // // 플러스, 마이너스 버튼 클릭시 개수 증가 감소 함수
+      function addSub(num, isBool) {
+        // console.log(num, isBool, orderArr[num]);
+        if (isBool === true) {
+          orderArr[num].cnt++;
+        } else {
+          if (orderArr[num].cnt > 1) {
+            orderArr[num].cnt--;
+          }
+        }
+
+        let totalPrice = menus[num].price * orderArr[num].cnt;
+        document.getElementById('cnt' + num).innerHTML = orderArr[num].cnt;
+        document.getElementById('menoy' + num).innerHTML =
+          totalPrice.toLocaleString(totalPrice);
+        result();
+      }
+
+      // 선택취소 버튼 함수
+      function cancel(num) {
+        orderArr[num].cnt = 0; //orderArr[num].cnt가 1보다 작을 때 orderbox에 추가되므로 cnt=0으로 리셋한다.
+        let list = document.getElementById('list' + num);
+        list.parentNode.removeChild(list);
+        result();
+      }
+
+      // 총 주문금액 함수 result 함수
+      function result() {
+        let total = 0;
+        for (let i = 0; i < orderArr.length; i++) {
+          total += orderArr[i].cnt * menus[i].price;
+        }
+        totalMemoy.innerText = `${total.toLocaleString(total)}원`;
+      }
+      // 모달창 화면출력/취소 코드
+      let btn = document.querySelector('.btn');
+      let modal = document.querySelector('.modal');
+      let btnClose = document.querySelector('.btn-close');
+
+      btn.addEventListener('click', () => {
+          modal.classList.add('active');        
+      });
+      btnClose.addEventListener('click', () => {
+          modal.classList.remove('active');
+      })
+    </script>
+  </body>
+</html>

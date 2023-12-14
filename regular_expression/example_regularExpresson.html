@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>정규표현식 연습문제</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        /* align-items: center;
+        height: 100vh; */
+      }
+      .form {
+        width: 600px;
+        height: 300px;
+        background-color: lightgrey;
+        padding: 25px;
+        line-height: 10px;
+      }
+      .form label {
+        display: inline-block;
+        width: 100px;
+        height: 40px;
+        margin-right: 10px;
+      }
+      .form input {
+        width: 300px;
+        height: 40px;
+      }
+      button {
+        cursor: pointer;
+        width: 100px;
+        height: 30px;
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="fm">
+      <div class="title">
+        <h1>회원가입</h1>
+      </div>
+      <div class="form">
+        <div class="form01">
+          <label for="">아이디</label
+          ><input type="text" id="id" placeholder="영어+숫자를 섞어서 4-12자" />
+          <button type="button" class="effective">유효성검사</button>
+        </div>
+        <div class="form02">
+          <label for="">패스워드</label
+          ><input
+            type="password"
+            id="pw"
+            placeholder="영어+특수문자+숫자를 섞어서 4-12자"
+          />
+          <button type="button" class="clear">클리어</button>
+        </div>
+        <div class="form03">
+          <label for="">패스워드확인</label
+          ><input
+            type="password"
+            id="pwchk"
+            placeholder="영어+특수문자+숫자를 섞어서 4-12자"
+          />
+        </div>
+        <div class="form04">
+          <label for="">이메일</label
+          ><input type="email" id="email" placeholder="@" />
+        </div>
+        <div class="form05">
+          <label for="">휴대폰</label
+          ><input type="tel" id="phone" placeholder="(-)포함하여 입력" />
+        </div>
+      </div>
+    </form>
+    <script>
+      let text = '';
+      // let count = 0;
+
+      // DOM 객체
+      let effectiveBtn = document.querySelector('.form .form01 .effective');
+      let clearBtn = document.querySelector('.form .form02 .clear');
+
+      // 유효성 검사 버튼 클릭시 alert 창띄우기
+      effectiveBtn.addEventListener('click', () => {
+        let id = document.querySelector('.form .form01 #id').value;
+        let pw = document.querySelector('.form .form02 #pw').value;
+        let pwchk = document.querySelector('.form .form03 #pwchk').value;
+        let email = document.querySelector('.form .form04 #email').value;
+        let phone = document.querySelector('.form .form05 #phone').value;
+
+        // 정규표현식
+        let idPattern = /^[a-zA-Z0-9]{4,12}$/;
+        let pwPattern = /^\w+([!@#$%^*+=-]?).{4,12}$/;
+        let emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})*$/;
+        let phonePattern = /^(010)-\d{4}-\d{4}$/;
+
+        // count++;
+        // id  비교
+        console.log(idPattern.test(id));
+        if (idPattern.test(id) === true) {
+          text += 'ID:' + id + '\n';
+        } else {
+          alert('아이디의 형식을 잘못 입력 하셨습니다.');
+        }
+
+        // 패스원드
+        if (pwPattern.test(pw) === true) {
+          if (pwPattern.test(pwchk) === true) {
+            text += `PW:${pw}\n`;
+          } else {
+            alert('패스워드가 일치하지 않습니다.');
+          }
+        } else {
+          alert('패스워드 형식을 잘못 입력 하셨습니다.');
+        }
+
+        // 이메일
+        if (emailPattern.test(email) === true) {
+          text += `EMAIL:${email}\n`;
+        } else {
+          alert('이메일 형식을 잘못 입력하셨습니다.');
+        }
+
+        // 전화번호
+        if (phonePattern.test(phone) === true) {
+          text += `PHONE:${phone}\n`;
+        } else {
+          alert('휴대폰 형식을 잘못 입력하셨습니다.');
+        }
+
+        alert(text);
+        // if (count == 0 + count) text = [];
+      });
+
+      clearBtn.addEventListener('click', () => {
+        document.getElementById('fm').reset();
+        document.getElementById('id').focus();
+      });
+    </script>
+  </body>
+</html>

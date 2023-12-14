@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OT의 계산기 만들기</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-size: 18px;
+        font-weight: 500;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      button {
+        cursor: pointer;
+      }
+      .container {
+        width: 340px;
+        height: 490px;
+        background-color: rgb(31, 88, 120);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .calculator {
+        width: 305px;
+        height: 442px;
+      }
+      .calculator_result {
+        width: 305px;
+        height: 103px;
+        background-color: rgb(230, 152, 147);
+        border-radius: 10px;
+        margin-bottom: 10px;
+        text-align: center;
+        line-height: 103px;
+        font-size: 25px;
+        font-weight: bold;
+      }
+      .calculator_btn {
+        width: 305px;
+        height: 331px;
+        background-color: white;
+        border-radius: 10px;
+        padding-top: 10px;
+        padding-left: 5px;
+      }
+      .calculator_btn .clear_enter {
+        width: 260px;
+        height: 55px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        /* border: 1px solid red; */
+        margin: 20px;
+      }
+      .calculator_btn .clear_enter button {
+        width: 122px;
+        height: 50px;
+        background-color: rgb(230, 152, 147);
+        border: 0;
+        border-radius: 10px;
+      }
+      .calculator_btn .calculator_num {
+        width: 260px;
+        height: 50px;
+        margin: 3px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .calculator_btn .calculator_num button {
+        width: 60px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        background-color: rgb(188, 178, 178);
+        border: 0;
+        border-radius: 10px;
+      }
+      .calculator_btn .calculator_num:nth-child(5) button:nth-child(1) {
+        width: 125px;
+        height: 47px;
+      }
+      .calculator_btn .calculator_num button:nth-child(4),
+      .calculator_num:nth-child(5) button:nth-child(3) {
+        background-color: rgb(49, 49, 50);
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="calculator">
+        <input type="text" class="calculator_result"></input>
+        <div class="calculator_btn">
+          <div class="clear_enter">
+            <button type="button" id="clear" value="ac">AC</button>
+            <button type="button" id="enter" class="operator" value="enter" >Enter</button>
+          </div>
+          <div class="calculator_num">
+            <button type="button" class="number btn">7</button>
+            <button type="button" class="number btn">8</button>
+            <button type="button" class="number btn">9</button>
+            <button type="button" class="operator btn" value="operator">+</button>
+          </div>
+          <div class="calculator_num">
+            <button type="button" class="number btn">4</button>
+            <button type="button" class="number btn">5</button>
+            <button type="button" class="number btn">6</button>
+            <button type="button" class="operator btn" value="operator">-</button>
+          </div>
+          <div class="calculator_num">
+            <button type="button" class="number btn">1</button>
+            <button type="button" class="number btn">2</button>
+            <button type="button" class="number btn">3</button>
+            <button type="button" class="operator btn" value="operator">*</button>
+          </div>
+          <div class="calculator_num">
+            <button type="button" class="number btn">0</button>
+            <button type="button" class="number btn">.</button>
+            <button type="button" class="operator btn" value="operator">/</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      // 계산기 작성 로직
+      // 1. ac => clear function() 만들기
+      // 2. enter => enter function() 만들기
+      // 3. calculator => calcul function() 만들기
+      // 4. 소수점 게산하는 로직
+      var numbtn = document.querySelectorAll('.number');
+      var operator = document.querySelectorAll('.operator');
+      var displayResult = document.querySelector('.calculator_result');
+      var enter = document.querySelector('#enter');
+      var reset = document.querySelector('#clear');
+      var buttons = document.querySelectorAll('.btn');
+      var total;
+      var oper = '';
+      var calcul = 0;
+      var display ='';
+      var operatorChk = false;
+      var PreviousNumber = 0;
+      var NextNumber =0;
+      var plus = 0;
+      var minus = 0;
+      var multiplication = 0;
+      var division = 0;
+      // forEach문 이용하여 모든 버튼을 클릭할때 함수를 작성함
+      // forEach문의 value는 element를 의미하므로 element.target.textConten를 이용하여 값을 출력한다.
+          // buttons.forEach((button) => {
+          //    button.addEventListener('click',() => {
+          //       switch(button.value){
+          //         case 'operator' : 
+          //          display += button.innerText;
+          //          console.log('버튼 value'+button.innerText);
+          //          displayResult.value = display;
+          //         break;
+          //         case 'ac' : 
+          //         display ='';
+          //         displayResult.value = display;
+          //         break;
+          //         case 'enter' : 
+          //         //  display = eval(display);
+          //          plus = display.indexOf('+');
+          //          minus = display.indexOf('-');
+          //          multiplication = display.indexOf('*');
+          //          division = display.indexOf('/');
+          //          console.log('+위치'+plus); 
+          //          if(plus != null){
+          //             PreviousNumber = display.substring(0,plus);
+          //             NextNumber = display.substring(plus+1);
+          //             total = parseInt(PreviousNumber) + parseInt(NextNumber);
+          //             displayResult.value = total;
+          //          }else if(minus != null){
+          //             PreviousNumber = display.substring(0,minus);
+          //             NextNumber = display.substring(minus+1);
+          //             total = parseInt(PreviousNumber) - parseInt(NextNumber); 
+          //             displayResult.value = total; 
+          //          }else if(multiplication != null){
+          //             PreviousNumber = display.substring(0,multiplication);
+          //             NextNumber = display.substring(multiplication+1);
+          //             total = parseInt(PreviousNumber) * parseInt(NextNumber); 
+          //             displayResult.value = total;  
+          //          }else {
+          //             PreviousNumber = display.substring(0,division);
+          //             NextNumber = display.substring(division+1);
+          //             total = parseInt(PreviousNumber) * parseInt(NextNumber); 
+          //             displayResult.value = total;  
+          //          }
+          //          console.log(PreviousNumber, NextNumber);
+          //         //  displayResult.value = display;
+          //         break;
+          //         default : 
+          //          display += button.innerText;
+          //          console.log(display);
+          //          displayResult.value = display;
+          //         break;
+          //       }
+          //    })
+          // })
+
+      // 연산자 클릭 함수    
+      for (let i = 0; i < operator.length; i++) {
+          operator[i].addEventListener('click', () => {
+          oper = operator[i].innerText;
+          // console.log(oper);
+        });
+      }
+
+       //계산 함수
+      for (let i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', (e) => {
+          
+          total = 0;
+          display += e.target.textContent;
+          displayResult.value = display;
+          let oper2 = display.split(operator);
+              console.log("oper1:"+oper2);
+              PreviousNumber = parseFloat(oper2[0]);
+              console.log("oper1:"+oper2[0]);
+              NextNumber = parseFloat(oper2[1]);
+              console.log("oper1:"+oper2[1]);
+          console.log(oper2);
+          if (oper === '+') {
+             calcul = PreviousNumber + NextNumber
+            //  console.log(calcul);
+          } else if (oper === '-') {
+             console.log(total);
+             minus = display.indexOf('-');
+             console.log('-위치'+minus);
+             PreviousNumber = display.substring(0,minus);
+             NextNumber = display.substring(minus+1);
+             calcul = (parseFloat(PreviousNumber) - paparseFloat(NextNumber));
+          } else if (oper === '*') {
+             multiplication = display.indexOf('*');
+             PreviousNumber = display.substring(0,multiplication);
+             NextNumber = display.substring(multiplication+1);
+             calcul = parseFloat(PreviousNumber) * parseFloat(NextNumber);
+          } else if (oper === '/') {
+             division = display.indexOf('/');
+             PreviousNumber = display.substring(0,division);
+             NextNumber = display.substring(division+1);
+             calcul = parseFloat(PreviousNumber) / parseFloat(NextNumber);
+          }
+             total = total + calcul;
+        });
+      }
+      // AC 버튼 클릭시 지우기
+      clear.addEventListener('click', () => {
+        display = '';
+        displayResult.value = '';
+        total = 0;
+        number = 0;
+        calcul = 0;
+      });
+      // ENter 버튼 클릭시 계산결과 result 태그안에 출력
+      enter.addEventListener('click', () => {
+        displayResult.value = total;
+      });
+    </script>
+  </body>
+</html>

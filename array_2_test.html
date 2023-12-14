@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2차원 배열 연습문제</title>
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
+  <body>
+      <!-- // 각 문자열을 1차원 배열들끼리 순서대로 조합하여 하나의 문장을 만드시오
+      // 각 1차원 배열들 끼리는 띄어쓰기를 기준으로 연결한다.
+      // ex) 어제 우리는 신발을
+      // 단 마지막 문장은 '어제'는 샀었다를, '오늘'은 샀다를, '내얼'은 산다를 합쳐 출력한다. -->
+
+    <div class="display"></div>
+    <script>
+      let arr = [
+        ['어제', '오늘', '내일'],
+        ['우리', '경래', '지호'],
+        ['는', '에게', '가'],
+        ['신발을', '가방을', '핸드폰을'],
+      ];
+      
+      let arr1 = Array.from(Array(3), () => new Array(4));
+      let display = document.querySelector('.display');
+
+      // 새로운 배열에 기존배열의 행과열을 바꾸어 저장한다.
+      for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr[0].length; j++) {
+          arr1[j][i] = arr[i][j];
+        }
+      }
+
+      // display 출력
+      let tb = "<table border='1'>";
+      for (let i = 0; i < arr1.length; i++) {
+        tb += '<tr>';
+        for (let j = 0; j < arr1[i].length; j++) {
+          tb += '<td>' + arr1[i][j] + '</td>';
+        }
+        tb += '</tr>';
+      }
+      tb += '</table>';
+      display.innerHTML = tb;
+    </script>
+  </body>
+</html>

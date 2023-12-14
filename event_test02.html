@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>event 연습2</title>
+</head>
+<body>
+    <div>click me</div>
+    <button>click me</button>
+    <script>
+        const box = document.querySelector('div');
+        const btn = document.querySelector('button');
+ 
+        const clickHandler = function(){
+            alert('clicked');
+        }
+ 
+        box.onclick  = clickHandler;
+        btn.onclick  = clickHandler;
+ 
+        // window.onresize = function(){
+        //     box.innerText = window.innerWidth +'x' + window.innerHeight;
+        // };
+ 
+    </script>
+</body>
+</html>

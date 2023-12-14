@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event 연습</title>
+  </head>
+  <body>
+    <button type="button" onclick="showSideNavi();">gray</button>
+    <div id="sideNavi">메뉴바</div>
+    <button type="button" id="btn">pink</button>
+
+    <script>
+      let sideNavi = document.getElementById('sideNavi');
+      let btn1 = document.getElementById('btn');
+
+      //  function을 선언적 함수방식으로 작성하고 DOM 이벤트 핸들러 방식을 사용하면 버튼을 클릭하기 전에 미리 style가 변경되어 출력된다.
+      // 이유는 호이스팅이 되기떄문이다.
+      // 이럴땐 function을 화살표함수 또는 익명함수 방식으로 작성한다.
+      let clickHandler = () => {
+        sideNavi.style.backgroundColor = 'pink';
+      };
+      btn1.onclick = clickHandler;
+
+      function showSideNavi() {
+        sideNavi.style.backgroundColor = 'gray';
+      }
+    </script>
+  </body>
+</html>

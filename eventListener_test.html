@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EventListener 연습</title>
+  </head>
+  <body>
+    <!-- <div id="cols">
+    <button class="btn">A</button>
+    <button class="btn">B</button>
+    <button class="btn">C</button>
+  </div> -->
+    <a>클릭</a>
+    <script>
+      let a = document.querySelector('a');
+      a.addEventListener('click', showConsole);
+
+      function showConsole() {
+        console.log('콘솔로그 실행');
+      }
+
+      // var cols = document.querySelectorAll("#cols .btn");
+
+      // for (var i = 0; i < cols.length; i++) {
+      //   cols[i].addEventListener("click", click);
+      // }
+      // cols[1].style.color = "red";
+
+      // function click(e) {
+      //   window.alert(this.innerHTML);
+      // }
+    </script>
+  </body>
+</html>

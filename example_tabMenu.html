@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>탭메뉴 만들기</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Noto Sans KR', sans-serif;
+        color: #222;
+        line-height: 1.6em;
+        background-color: #f4f4f4;
+        font-weight: 300;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      section {
+        width: 800px;
+      }
+      .tab-inner {
+        margin-top: 30px;
+      }
+      .btn {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        margin-left: 10px;
+      }
+      .btn li {
+        float: left;
+        /* border: 1px solid #000; */
+        width: 120px;
+        text-align: center;
+        cursor: pointer;
+        background-color: #eee;
+        border-right: 1px solid #ddd;
+        padding: 5px;
+        border-top: 2px solid transparent;
+      }
+      .btn li:last-child {
+        width: 170px;
+        border-right: none;
+      }
+      .btn li:hover,
+      .btn li.active {
+        background-color: #fff;
+        border-top: 2px solid crimson;
+      }
+      .tabs div {
+        background-color: #fff;
+        padding: 20px;
+        box-sizing: border-box;
+        display: none;
+      }
+      .tabs div.active {
+        display: block;
+      }
+
+      /* Tab Content */
+      .tabs div h2 {
+        text-align: center;
+      }
+      .tabs div img {
+        float: left;
+        margin-right: 10px;
+      }
+      .tabs div p {
+        overflow: hidden;
+      }
+
+      /* Heading */
+      .heading h1 {
+        font-size: 30px;
+        text-align: center;
+      }
+      .heading h1 span {
+        color: crimson;
+      }
+      .heading input[type='text'] {
+        outline: none;
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border: none;
+        border-bottom: 2px solid #ddd;
+        background: #fff url(images/search-icon.png) no-repeat center left 5px;
+        background-size: 23px;
+        padding-left: 35px;
+      }
+      .heading input[type='text']::placeholder {
+        font-style: italic;
+        transition: 0.3s;
+      }
+      .heading input[type='text']:focus::placeholder {
+        /* display: none; */
+        /* visibility: hidden; */
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="tab-inner">
+        <ul class="btn">
+          <li data-alt="tab1" class="active">HTML5</li>
+          <li data-alt="tab2">CSS3</li>
+          <li data-alt="tab3">JQUERY</li>
+          <li data-alt="tab4">JAVASCRIPT</li>
+          <li data-alt="tab5">CSS FRAMEWORKS</li>
+        </ul>
+        <div class="tabs">
+          <div id="tab1" class="active">
+            <h2>HTML5</h2>
+            <img src="images/platform-logo-01.png" />
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae
+              consequatur nemo cum eos repellat recusandae ullam natus
+              cupiditate laboriosam, aliquid nisi aperiam laborum illo ut omnis
+              saepe quam eveniet voluptate, eaque voluptatum? Nobis, libero est.
+              Deleniti perferendis minima modi cum, ut mollitia ipsam unde totam
+              laboriosam fuga sapiente qui autem ipsa repellendus, quis harum,
+              illo explicabo quidem aut officia eaque? Libero doloremque
+              officiis eos. Illum quis architecto porro nemo facilis itaque
+              alias, fugiat possimus debitis iure a? Laborum consequatur esse
+              natus reprehenderit quae velit ex repellendus. Excepturi, pariatur
+              ad, sequi voluptatum quaerat placeat sed assumenda repudiandae
+              quibusdam perferendis eum illo.
+            </p>
+          </div>
+          <div id="tab2">
+            <h2>CSS3</h2>
+            <img src="images/platform-logo-02.png" />
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae
+              consequatur nemo cum eos repellat recusandae ullam natus
+              cupiditate laboriosam, aliquid nisi aperiam laborum illo ut omnis
+              saepe quam eveniet voluptate, eaque voluptatum? Nobis, libero est.
+              Deleniti perferendis minima modi cum, ut mollitia ipsam unde totam
+              laboriosam fuga sapiente qui autem ipsa repellendus, quis harum,
+              illo explicabo quidem aut officia eaque? Libero doloremque
+              officiis eos. Illum quis architecto porro nemo facilis itaque
+              alias, fugiat possimus debitis iure a? Laborum consequatur esse
+              natus reprehenderit quae velit ex repellendus. Excepturi, pariatur
+              ad, sequi voluptatum quaerat placeat sed assumenda repudiandae
+              quibusdam perferendis eum illo.
+            </p>
+          </div>
+          <div id="tab3">
+            <h2>JQUERY</h2>
+            <img src="images/platform-logo-03.png" />
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae
+              consequatur nemo cum eos repellat recusandae ullam natus
+              cupiditate laboriosam, aliquid nisi aperiam laborum illo ut omnis
+              saepe quam eveniet voluptate, eaque voluptatum? Nobis, libero est.
+              Deleniti perferendis minima modi cum, ut mollitia ipsam unde totam
+              laboriosam fuga sapiente qui autem ipsa repellendus, quis harum,
+              illo explicabo quidem aut officia eaque? Libero doloremque
+              officiis eos. Illum quis architecto porro nemo facilis itaque
+              alias, fugiat possimus debitis iure a? Laborum consequatur esse
+              natus reprehenderit quae velit ex repellendus. Excepturi, pariatur
+              ad, sequi voluptatum quaerat placeat sed assumenda repudiandae
+              quibusdam perferendis eum illo.
+            </p>
+          </div>
+          <div id="tab4">
+            <h2>JAVASCRIPT</h2>
+            <img src="images/platform-logo-04.png" />
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae
+              consequatur nemo cum eos repellat recusandae ullam natus
+              cupiditate laboriosam, aliquid nisi aperiam laborum illo ut omnis
+              saepe quam eveniet voluptate, eaque voluptatum? Nobis, libero est.
+              Deleniti perferendis minima modi cum, ut mollitia ipsam unde totam
+              laboriosam fuga sapiente qui autem ipsa repellendus, quis harum,
+              illo explicabo quidem aut officia eaque? Libero doloremque
+              officiis eos. Illum quis architecto porro nemo facilis itaque
+              alias, fugiat possimus debitis iure a? Laborum consequatur esse
+              natus reprehenderit quae velit ex repellendus. Excepturi, pariatur
+              ad, sequi voluptatum quaerat placeat sed assumenda repudiandae
+              quibusdam perferendis eum illo.
+            </p>
+          </div>
+          <div id="tab5">
+            <h2>CSS FRAMEWORKS</h2>
+            <img src="images/platform-logo-05.png" />
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae
+              consequatur nemo cum eos repellat recusandae ullam natus
+              cupiditate laboriosam, aliquid nisi aperiam laborum illo ut omnis
+              saepe quam eveniet voluptate, eaque voluptatum? Nobis, libero est.
+              Deleniti perferendis minima modi cum, ut mollitia ipsam unde totam
+              laboriosam fuga sapiente qui autem ipsa repellendus, quis harum,
+              illo explicabo quidem aut officia eaque? Libero doloremque
+              officiis eos. Illum quis architecto porro nemo facilis itaque
+              alias, fugiat possimus debitis iure a? Laborum consequatur esse
+              natus reprehenderit quae velit ex repellendus. Excepturi, pariatur
+              ad, sequi voluptatum quaerat placeat sed assumenda repudiandae
+              quibusdam perferendis eum illo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      $('.btn li').click(function () {
+        $(this).addClass('active');
+        $(this).siblings().removeClass('active');
+
+        var result = $(this).attr('data-alt');
+        $('.tabs div').removeClass('active');
+        $('#' + result).addClass('active');
+      });
+    </script>
+  </body>
+</html>

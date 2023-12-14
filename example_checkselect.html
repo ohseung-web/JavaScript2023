@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>체크박스 선택 연습문제</title>
+  <style>
+    body{
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+    }
+    table{border-collapse: collapse;font-weight: bold;}
+</style>
+</head>
+<body>
+  <div class="container">
+    <input type="checkbox" name="fruit" value="apple"/>사과
+    <input type="checkbox" name="fruit" value="strawberry"/>딸기
+    <input type="checkbox" name="fruit" value="lemon"/>레몬
+    <input type="checkbox" name="fruit" value="mango"/>망고
+    <input type="checkbox" name="fruit" value="melon"/>메론
+    <button >체크된 객체 value 가져오기</button>
+    <div id="print"></div> 
+  </div>
+  <script>
+     let btn = document.querySelector('.container button');
+     let fruit = document.querySelectorAll('.container input');
+     let print = document.querySelector('#print');
+     let tb ;
+     btn.addEventListener('click',() => {
+         tb ="<table border='1'>"
+         fruit.forEach((currentFruit) => {
+          // console.log(currentFruit.value);
+            tb += "<tr>";
+            if(currentFruit.checked === true) {
+              tb += "<td>"+currentFruit.value+"</td>"
+            } tb += "</tr>"; 
+         })  
+         print.innerHTML = tb;
+     })
+
+
+
+    //  function value_check() {
+    //     var check_count = document.getElementsByName("fruit").length;
+    //     var print = document.getElementById("print");
+    //     var tb = "<table border='1'>"
+    //     for (var i=0; i<check_count; i++) {
+    //         tb += "<tr>";
+    //         if (document.getElementsByName("fruit")[i].checked == true) {
+    //             tb += "<td>"+document.getElementsByName("fruit")[i].value+"</td>";
+               
+    //           /*  alert(document.getElementsByName("fruit")[i].value);*/
+    //         }tb += "</tr>";
+    //     } tb += "</table>";
+    //     print.innerHTML = tb;
+    // }
+  </script>
+</body>
+</html>

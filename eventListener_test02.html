@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EventListener 연습2</title>
+  </head>
+  <body>
+    <button id="btn1">버튼1</button>
+    <button id="btn2">버튼2</button>
+    <script>
+      let btn1 = document.getElementById('btn1');
+      let btn2 = document.getElementById('btn2');
+
+      btn1.addEventListener('mouseover',changColor1);
+      btn1.addEventListener('mouseout',function(e){
+        e.currentTarget.style.backgroundColor='#afd3fa';
+      });
+      
+      function changColor1(e){
+        e.currentTarget.style.backgroundColor='#c6b8ff';
+      }
+    </script>
+  </body>
+</html>

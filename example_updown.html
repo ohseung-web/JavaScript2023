@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UpDown 게임 만들기</title>
+  <style>
+    *{
+      box-sizing: border-box;
+    }
+    body{
+      margin: 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .container{
+      width: 350px;
+      height: 500px;
+      border:1px solid black;
+      position: relative;
+    }
+    .header, .footer{
+      width: inherit;
+      height: 50px;
+      background-color: black;
+      color: white;
+      font-weight: bold;
+      font-size: 25px;
+      text-align: center;
+      line-height: 50px;
+      position: absolute;
+    }
+    .header{
+      top:0px;
+      left: 0;
+    }
+    .footer{
+      left: 0;
+      bottom: 0;
+    }
+    .section01{
+      width: inherit;
+      height: 70px ;
+      /* border: 1px solid blue; */
+      position: absolute;
+      left: 0;
+      top : 50px;
+      text-align: center;
+      line-height: 2em;
+    }
+    .section02{
+      width: inherit;
+      height: 180px;
+      /* border: 1px solid blue; */
+      position: absolute;
+      left: 0;
+      top:120px;
+      text-align: center;
+      line-height: 180px;
+    }
+    .section02 input[type=text]{
+      width: 130px;
+      height: 40px;
+      border-radius: 5px;
+    }
+    .section02 button{
+      width: 60px;
+      height: 40px;
+      background-color: rgba(211, 211, 211, 0.558);
+      cursor: pointer;
+      border: 1px solid lightgray;
+      font-weight: bold;
+    }
+    .showresult{
+      width: inherit;
+      height: 150px;
+      /* border: 1px solid blue; */
+      position: absolute;
+      top:300px;
+      left: 0;
+      font-size: 40px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      숫자 맞추기 게임
+    </div>
+    <div class="section01">
+      <p>1에서 100사이의 수를 입력하세요</p>
+    </div>
+    <div class="section02">
+      <input type="text">
+      <button type="button" class="btn">확인</button>
+    </div>
+    <div class="showresult"></div>
+    <div class="footer"></div>
+  </div>
+  <script>
+    let computerNum = Math.floor(Math.random()*100)+1;
+    let cnt = 0;
+    let btn = document.querySelector('.btn');
+    let show = document.querySelector('.showresult');
+    let footercnt = document.querySelector('.footer');
+    let input = document.querySelector('input');
+    
+    btn.addEventListener('click', () => {
+        
+        let userNum = parseInt(input.value);
+        // console.log(userNum);
+        // console.log(computerNum);
+        cnt ++;
+            if(userNum === computerNum){
+              show.innerHTML = "Bingo!";
+              }else if(userNum > computerNum){
+                show.innerHTML = "Down!";
+              }else {
+                show.innerHTML = "Up!";
+              }
+         footercnt.innerHTML = `시도 횟수 : ${cnt}회`;   
+    })
+     
+     
+
+
+  </script>
+</body>
+</html>

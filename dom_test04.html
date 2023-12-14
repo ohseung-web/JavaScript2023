@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dom 연습문제 - className, classList</title>
+    <style>
+      .blue{
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>
+      <span>난 span 태그야</span>
+    </h1>
+    <script>
+      let titleChange = document.getElementsByTagName('h1')[0];
+      let p = document.createElement('p');
+
+      p.className = 'blue';
+      // p.classList.add('blue');
+      p.innerHTML = '난 js로 추가된 p태그야';
+      titleChange.appendChild(p);//h1태그의 자식노드로 추가한다.
+    </script>
+  </body>
+</html>
